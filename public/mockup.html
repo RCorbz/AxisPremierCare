@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AXIS Performance Care</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "primary": "#d9ff00",
+                "background-light": "#f8f8f5",
+                "background-dark": "#0a0a0a",
+                "surface-dark": "#171717",
+                "surface-border": "#262626",
+                "text-muted": "#A3A3A3"
+              },
+              fontFamily: {
+                "display": ["Inter", "sans-serif"],
+                "body": ["Inter", "sans-serif"]
+              },
+              borderRadius: {
+                "DEFAULT": "0.125rem", 
+                "sm": "0.25rem",
+                "md": "0.375rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem"
+              },
+              spacing: {
+                "18": "4.5rem",
+                "22": "5.5rem"
+              }
+            },
+          },
+        }
+      </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0a0a;
+            color: white;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        .volt-glow:hover {
+            box-shadow: 0 0 15px rgba(217, 255, 0, 0.2);
+            border-color: #d9ff00;
+        }
+
+        .grid-bg {
+            background-image: linear-gradient(rgba(38, 38, 38, 0.2) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(38, 38, 38, 0.2) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+    </style>
+</head>
+<body class="bg-background-dark text-white overflow-x-hidden">
+<!-- Top Navigation -->
+<nav class="sticky top-0 z-50 w-full border-b border-surface-border bg-background-dark/90 backdrop-blur-md">
+<div class="mx-auto max-w-7xl px-6 lg:px-8">
+<div class="flex h-16 items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="flex h-8 w-8 items-center justify-center bg-primary text-black font-black text-lg rounded-sm">A</span>
+<span class="text-lg font-bold tracking-tighter text-white">AXIS <span class="text-text-muted font-normal">CARE</span></span>
+</div>
+<div class="hidden md:flex items-center gap-8 text-sm font-medium text-text-muted">
+<a class="hover:text-primary transition-colors" href="#mission">MISSION</a>
+<a class="hover:text-primary transition-colors" href="#contrast">INTEL</a>
+<a class="hover:text-primary transition-colors" href="#ops">OPS</a>
+<a class="hover:text-primary transition-colors" href="#access">ACCESS</a>
+</div>
+<button class="flex items-center justify-center gap-2 rounded-sm bg-primary px-5 py-2 text-sm font-bold text-black transition-all hover:bg-white">
+<span class="material-symbols-outlined text-[18px] font-bold">bolt</span>
+                    DEPLOY
+                </button>
+</div>
+</div>
+</nav>
+<!-- Strip 1: Hero Section -->
+<header class="relative flex min-h-[85vh] flex-col items-center justify-center border-b border-surface-border bg-background-dark overflow-hidden" id="mission">
+<!-- Background Image with Overlay -->
+<div class="absolute inset-0 z-0">
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark via-background-dark/80 to-transparent z-10"></div>
+<img alt="Cinematic desaturated shot of an athlete focusing" class="h-full w-full object-cover opacity-40 grayscale" data-alt="Cinematic desaturated shot of an athlete focusing" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3Liotd6taB1Ec-vTHtURVDZ1kWn0ixjnOoGyPXlXk6gXLKKawEr43uSt_nPPrOR7LRijQGkSP3LPug3QjxID_ZaI-rRikmf7gPgw3_cJnMWG6-hHgzM-Ee3tcVsfG_Fyf7hB-eUF1_VvkHbJSQUP4yBsTVADuFZdC9OxPUBnWLrlqVuEXC6q36iGgf75xZrJgsvaeZDQxHzrZWyJRMIikNjMwps6gQEuIhfHT0t1OrPexKtQgotTefANqd0OAawIJzAxQK_sR1X3t"/>
+</div>
+<div class="relative z-10 mx-auto max-w-7xl px-6 lg:px-8 w-full">
+<div class="flex flex-col gap-6 max-w-3xl">
+<div class="flex items-center gap-2 text-primary font-mono text-xs tracking-[0.2em] uppercase">
+<span class="h-1.5 w-1.5 rounded-full bg-primary animate-pulse"></span>
+                    System Status: Online
+                </div>
+<h1 class="text-5xl font-black leading-[0.95] tracking-[-0.03em] text-white md:text-7xl lg:text-8xl">
+                    HIGH-PERFORMANCE<br/>
+                    RECOVERY.<br/>
+<span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-text-muted">DELIVERED.</span>
+</h1>
+<p class="max-w-xl text-lg text-text-muted md:text-xl font-light leading-relaxed">
+                    We bring clinical-grade chiropractic care directly to your environment. No waiting rooms. No friction. Optimizing physiology in Bountiful, UT.
+                </p>
+<div class="mt-8 flex flex-col sm:flex-row gap-4">
+<button class="group flex h-14 items-center justify-center gap-3 rounded-sm bg-primary px-8 text-base font-bold text-black transition-all hover:bg-white hover:scale-[1.01]">
+                        REQUEST ACCESS
+                        <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+<button class="flex h-14 items-center justify-center gap-3 rounded-sm border border-surface-border bg-surface-dark/50 px-8 text-base font-medium text-white transition-all hover:border-primary hover:text-primary backdrop-blur-sm">
+                        VIEW PROTOCOLS
+                    </button>
+</div>
+</div>
+</div>
+<!-- Technical readout decoration -->
+<div class="absolute bottom-8 right-8 hidden md:block text-right font-mono text-xs text-text-muted/40">
+<p>COORD: 40.8894° N, 111.8808° W</p>
+<p>SECTOR: DAVIS COUNTY</p>
+<p>ID: AXIS-01</p>
+</div>
+</header>
+<!-- Strip 2: Friction vs. Flow -->
+<section class="border-b border-surface-border bg-background-dark py-24 relative overflow-hidden" id="contrast">
+<div class="grid-bg absolute inset-0 opacity-20 pointer-events-none"></div>
+<div class="relative mx-auto max-w-7xl px-6 lg:px-8">
+<div class="mb-16">
+<h2 class="text-sm font-bold tracking-[0.2em] text-primary uppercase mb-2">Situation Report</h2>
+<h3 class="text-3xl font-bold text-white md:text-4xl">FRICTION VS. FLOW</h3>
+</div>
+<div class="grid gap-0 lg:grid-cols-2 lg:gap-8">
+<!-- Left: The Old Way -->
+<div class="group relative flex flex-col justify-between overflow-hidden rounded-sm border border-surface-border bg-surface-dark/30 p-8 transition-all hover:bg-surface-dark/50">
+<div class="absolute right-4 top-4 opacity-20 group-hover:opacity-40 transition-opacity">
+<span class="material-symbols-outlined text-6xl">hourglass_disabled</span>
+</div>
+<div>
+<h4 class="text-xl font-bold text-text-muted mb-6">Standard Care</h4>
+<ul class="space-y-6">
+<li class="flex items-start gap-4 opacity-60">
+<span class="material-symbols-outlined text-red-900 mt-1">close</span>
+<div>
+<p class="font-bold text-text-muted">Commute &amp; Traffic</p>
+<p class="text-sm text-text-muted/60">Wasted hours in transit.</p>
+</div>
+</li>
+<li class="flex items-start gap-4 opacity-60">
+<span class="material-symbols-outlined text-red-900 mt-1">close</span>
+<div>
+<p class="font-bold text-text-muted">Waiting Room Limbo</p>
+<p class="text-sm text-text-muted/60">20+ minutes reading old magazines.</p>
+</div>
+</li>
+<li class="flex items-start gap-4 opacity-60">
+<span class="material-symbols-outlined text-red-900 mt-1">close</span>
+<div>
+<p class="font-bold text-text-muted">Rush Hour Treatment</p>
+<p class="text-sm text-text-muted/60">5 minutes of rushed adjustment.</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="mt-8 border-t border-surface-border pt-4">
+<p class="font-mono text-xs uppercase tracking-wider text-red-900/50">Efficiency Rating: 12%</p>
+</div>
+</div>
+<!-- Right: The AXIS Way -->
+<div class="relative flex flex-col justify-between overflow-hidden rounded-sm border border-primary/30 bg-surface-dark p-8 shadow-[0_0_50px_-20px_rgba(217,255,0,0.1)] transition-all">
+<div class="absolute right-4 top-4 text-primary opacity-20">
+<span class="material-symbols-outlined text-6xl">bolt</span>
+</div>
+<div>
+<h4 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
+                            AXIS Protocol
+                            <span class="rounded bg-primary/20 px-2 py-0.5 text-[10px] font-bold text-primary uppercase tracking-wide">Superior</span>
+</h4>
+<ul class="space-y-6">
+<li class="flex items-start gap-4">
+<span class="material-symbols-outlined text-primary mt-1">check_circle</span>
+<div>
+<p class="font-bold text-white">We Deploy to You</p>
+<p class="text-sm text-text-muted">Home, office, or gym. Zero transit.</p>
+</div>
+</li>
+<li class="flex items-start gap-4">
+<span class="material-symbols-outlined text-primary mt-1">check_circle</span>
+<div>
+<p class="font-bold text-white">Zero Friction</p>
+<p class="text-sm text-text-muted">No waiting. We are ready when you are.</p>
+</div>
+</li>
+<li class="flex items-start gap-4">
+<span class="material-symbols-outlined text-primary mt-1">check_circle</span>
+<div>
+<p class="font-bold text-white">Deep Work</p>
+<p class="text-sm text-text-muted">60 minutes of manual therapy &amp; optimization.</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="mt-8 border-t border-primary/20 pt-4 flex justify-between items-center">
+<p class="font-mono text-xs uppercase tracking-wider text-primary">Efficiency Rating: 100%</p>
+<button class="text-xs font-bold text-white hover:text-primary uppercase tracking-wider flex items-center gap-1">
+                            Deploy Now <span class="material-symbols-outlined text-sm">arrow_right_alt</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Strip 3: The Workflow -->
+<section class="border-b border-surface-border bg-background-dark py-24" id="ops">
+<div class="mx-auto max-w-7xl px-6 lg:px-8">
+<div class="mb-16 text-center">
+<h2 class="text-sm font-bold tracking-[0.2em] text-text-muted uppercase mb-2">Operational Procedure</h2>
+<h3 class="text-3xl font-bold text-white md:text-4xl">THE WORKFLOW</h3>
+</div>
+<div class="relative grid gap-8 md:grid-cols-3">
+<!-- Connector Line (Desktop Only) -->
+<div class="absolute top-12 left-0 hidden w-full -translate-y-1/2 md:block px-16 z-0">
+<div class="h-px w-full border-t border-dashed border-surface-border"></div>
+</div>
+<!-- Step 1 -->
+<div class="relative z-10 flex flex-col items-center text-center group">
+<div class="mb-6 flex h-24 w-24 items-center justify-center rounded-sm border border-surface-border bg-background-dark text-text-muted transition-all duration-300 group-hover:border-primary group-hover:text-primary group-hover:scale-110 shadow-lg shadow-black">
+<span class="material-symbols-outlined text-4xl">cell_tower</span>
+</div>
+<div class="flex flex-col gap-2">
+<span class="font-mono text-xs font-bold text-primary">STEP 01</span>
+<h4 class="text-xl font-bold text-white">SIGNAL</h4>
+<p class="text-sm text-text-muted px-4">Secure your slot via text or our dedicated app. Instant confirmation.</p>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="relative z-10 flex flex-col items-center text-center group">
+<div class="mb-6 flex h-24 w-24 items-center justify-center rounded-sm border border-surface-border bg-background-dark text-text-muted transition-all duration-300 group-hover:border-primary group-hover:text-primary group-hover:scale-110 shadow-lg shadow-black">
+<span class="material-symbols-outlined text-4xl">local_shipping</span>
+</div>
+<div class="flex flex-col gap-2">
+<span class="font-mono text-xs font-bold text-primary">STEP 02</span>
+<h4 class="text-xl font-bold text-white">DEPLOY</h4>
+<p class="text-sm text-text-muted px-4">Provider dispatched to your coordinates in Davis County.</p>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="relative z-10 flex flex-col items-center text-center group">
+<div class="mb-6 flex h-24 w-24 items-center justify-center rounded-sm border border-surface-border bg-background-dark text-text-muted transition-all duration-300 group-hover:border-primary group-hover:text-primary group-hover:scale-110 shadow-lg shadow-black">
+<span class="material-symbols-outlined text-4xl">vital_signs</span>
+</div>
+<div class="flex flex-col gap-2">
+<span class="font-mono text-xs font-bold text-primary">STEP 03</span>
+<h4 class="text-xl font-bold text-white">OPTIMIZE</h4>
+<p class="text-sm text-text-muted px-4">Clinical-grade treatment performed on-site. Return to peak state.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Strip 4: The Membership -->
+<section class="border-b border-surface-border bg-[#0f0f0f] py-24" id="access">
+<div class="mx-auto max-w-7xl px-6 lg:px-8">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+<div>
+<h2 class="text-sm font-bold tracking-[0.2em] text-primary uppercase mb-2">Classified Access</h2>
+<h3 class="text-3xl font-bold text-white md:text-4xl">PERFORMANCE CLUB</h3>
+</div>
+<p class="max-w-md text-text-muted text-sm md:text-right">
+                    Exclusive tier for athletes and executives demanding priority logistics and continuous physiological monitoring.
+                </p>
+</div>
+<div class="grid gap-6 md:grid-cols-3">
+<!-- Card 1 -->
+<div class="volt-glow flex flex-col justify-between rounded-sm bg-surface-dark border border-surface-border p-6 transition-all duration-300">
+<div class="mb-6">
+<div class="mb-4 inline-flex items-center justify-center rounded-sm bg-background-dark p-2 text-white border border-surface-border">
+<span class="material-symbols-outlined">call</span>
+</div>
+<h4 class="text-lg font-bold text-white mb-2">The Bat Phone</h4>
+<p class="text-sm text-text-muted">Direct SMS line to your provider. No receptionist. No hold music. Immediate intel.</p>
+</div>
+<div class="border-t border-surface-border pt-4">
+<ul class="space-y-2 text-xs font-mono text-text-muted/80">
+<li class="flex justify-between"><span>RESPONSE TIME</span> <span class="text-white">&lt; 15 MIN</span></li>
+<li class="flex justify-between"><span>AVAILABILITY</span> <span class="text-white">24/7</span></li>
+</ul>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="volt-glow flex flex-col justify-between rounded-sm bg-surface-dark border border-surface-border p-6 transition-all duration-300 relative overflow-hidden">
+<div class="absolute top-0 right-0 p-2">
+<span class="material-symbols-outlined text-primary opacity-20 text-6xl rotate-12 transform translate-x-2 -translate-y-2">stars</span>
+</div>
+<div class="mb-6 relative z-10">
+<div class="mb-4 inline-flex items-center justify-center rounded-sm bg-background-dark p-2 text-white border border-surface-border">
+<span class="material-symbols-outlined">route</span>
+</div>
+<h4 class="text-lg font-bold text-white mb-2">Priority Routing</h4>
+<p class="text-sm text-text-muted">Same-day scheduling privileges. You jump the queue. Your recovery cannot wait.</p>
+</div>
+<div class="border-t border-surface-border pt-4 relative z-10">
+<ul class="space-y-2 text-xs font-mono text-text-muted/80">
+<li class="flex justify-between"><span>SCHEDULING</span> <span class="text-white">PRIORITY 1</span></li>
+<li class="flex justify-between"><span>SLOTS</span> <span class="text-white">RESERVED</span></li>
+</ul>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="volt-glow flex flex-col justify-between rounded-sm bg-surface-dark border border-surface-border p-6 transition-all duration-300">
+<div class="mb-6">
+<div class="mb-4 inline-flex items-center justify-center rounded-sm bg-background-dark p-2 text-white border border-surface-border">
+<span class="material-symbols-outlined">medical_services</span>
+</div>
+<h4 class="text-lg font-bold text-white mb-2">Sterile Field</h4>
+<p class="text-sm text-text-muted">Hospital-grade mobile setup delivered to your location. Clean, efficient, and precise.</p>
+</div>
+<div class="border-t border-surface-border pt-4">
+<ul class="space-y-2 text-xs font-mono text-text-muted/80">
+<li class="flex justify-between"><span>HYGIENE</span> <span class="text-white">CLINICAL</span></li>
+<li class="flex justify-between"><span>SETUP TIME</span> <span class="text-white">3 MIN</span></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="mt-12 flex justify-center">
+<button class="flex min-w-[200px] cursor-pointer items-center justify-center rounded-sm bg-white h-12 px-6 text-black text-sm font-bold tracking-wide hover:bg-primary transition-colors">
+                    JOIN THE CLUB
+                </button>
+</div>
+</div>
+</section>
+<!-- Strip 5: Footer (The Intel) -->
+<footer class="border-t border-surface-border bg-surface-dark pt-16 pb-8">
+<div class="mx-auto max-w-7xl px-6 lg:px-8">
+<div class="grid gap-12 lg:grid-cols-4 border-b border-surface-border pb-12">
+<div class="lg:col-span-2">
+<div class="flex items-center gap-2 mb-6">
+<span class="flex h-6 w-6 items-center justify-center bg-white text-black font-black text-xs rounded-sm">A</span>
+<span class="text-base font-bold tracking-tight text-white">AXIS PERFORMANCE CARE</span>
+</div>
+<p class="max-w-sm text-sm text-text-muted leading-relaxed mb-6">
+                        Concierge chiropractic and performance recovery services for high-fidelity individuals. Optimizing human physiology in real-time environments.
+                    </p>
+<div class="flex gap-4">
+<a class="text-text-muted hover:text-primary transition-colors" href="#">
+<svg aria-hidden="true" class="h-5 w-5" fill="currentColor" viewbox="0 0 24 24">
+<path clip-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" fill-rule="evenodd"></path>
+</svg>
+</a>
+<a class="text-text-muted hover:text-primary transition-colors" href="#">
+<svg aria-hidden="true" class="h-5 w-5" fill="currentColor" viewbox="0 0 24 24">
+<path clip-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.468 4.09c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" fill-rule="evenodd"></path>
+</svg>
+</a>
+</div>
+</div>
+<div class="space-y-4">
+<h4 class="text-sm font-bold text-white uppercase tracking-wider">SECTOR</h4>
+<ul class="space-y-2 text-sm text-text-muted font-mono">
+<li>Bountiful, UT</li>
+<li>Davis County</li>
+<li>Salt Lake Metro North</li>
+<li>COORD: 40.88N, 111.88W</li>
+</ul>
+</div>
+<div class="space-y-4">
+<h4 class="text-sm font-bold text-white uppercase tracking-wider">COMMS</h4>
+<ul class="space-y-2 text-sm text-text-muted font-mono">
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-[16px]">call</span> (801) 555-0123</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-[16px]">mail</span> secure@axis.care</li>
+</ul>
+<a class="inline-block mt-4 text-xs font-bold text-primary border-b border-primary pb-0.5 hover:text-white hover:border-white transition-all" href="#">
+                        INITIATE CONTACT -&gt;
+                    </a>
+</div>
+</div>
+<div class="pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-text-muted/60">
+<p>© 2024 AXIS PERFORMANCE CARE. ALL RIGHTS RESERVED.</p>
+<div class="flex gap-6">
+<a class="hover:text-white" href="#">PRIVACY PROTOCOL</a>
+<a class="hover:text-white" href="#">TERMS OF SERVICE</a>
+</div>
+</div>
+</div>
+</footer>
+</body></html>

@@ -4,9 +4,34 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>myapp</title>
+    <title>AXIS Performance Care</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script>
+   tailwind.config = {
+     darkMode: "class",
+     theme: {
+       extend: {
+         colors: {
+           "primary": "#d9ff00",
+           "background-light": "#f8f8f5",
+           "background-dark": "#0a0a0a",
+           "surface-dark": "#171717",
+           "surface-border": "#262626",
+           "text-muted": "#A3A3A3"
+         },
+         fontFamily: { "display": ["Inter", "sans-serif"], "body": ["Inter", "sans-serif"] }
+       },
+     },
+   }
+    </script>
+    <style>
+      .volt-glow:hover { box-shadow: 0 0 15px rgba(217, 255, 0, 0.2); border-color: #d9ff00; }
+      .grid-bg { background-image: linear-gradient(rgba(38, 38, 38, 0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(38, 38, 38, 0.2) 1px, transparent 1px); background-size: 40px 40px; }
+    </style>
   </head>
-  <body>
+  <body class="bg-background text-primary">
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
