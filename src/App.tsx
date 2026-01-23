@@ -1,23 +1,21 @@
-import Navbar from './components/Navbar'; // <--- Import Navbar
-import HeroSection from './components/HeroSection';
-import FrictionFlow from './components/FrictionFlow';
-import Workflow from './components/Workflow';
-import PerformanceClub from './components/PerformanceClub';
-import Footer from './components/Footer';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { AuthProvider } from './contexts/AuthContext';
+import HomePage from './pages/Home';
+import Login from './components/auth/Login';
+import Portal from './pages/Portal';
 
-export default function Home() {
+export default function App() {
   return (
-    <div className="bg-background-dark min-h-screen">
-      <Navbar /> {/* <--- Sticky Header at the top */}
-      
-      <main>
-        <HeroSection />
-        <FrictionFlow />
-        <Workflow />
-        <PerformanceClub />
-      </main>
-
-      <Footer />
-    </div>
+    <AuthProvider>
+      <Router>
+        <div className="bg-background-dark min-h-screen text-white font-sans">
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/portal" element={<Portal />} />
+          </Routes>
+        </div>
+      </Router>
+    </AuthProvider>
   );
 }

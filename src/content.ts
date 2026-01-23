@@ -53,8 +53,45 @@ export const CONTENT = {
             { title: "Family Unlock", desc: "Waived travel fees for spouses or family members treated at the same location." }
         ]
     },
+    // ... (existing content)
     footer: {
         descriptor: "Concierge mobile chiropractic for Davis County. Specializing in acute pain, sciatica, and performance mobility.",
         serviceAreas: "Bountiful, Centerville, North Salt Lake, Farmington."
+    },
+    application: {
+        steps: [
+            {
+                id: "step-0",
+                label: "ACCESS",
+                title: "Have an Access Code?",
+                desc: "If your organization provides AXIS coverage, enter your code here. Otherwise, continue as an Individual.",
+                placeholder: "Enter Code (Optional)",
+                button: "Verify // Continue"
+            },
+            {
+                id: "step-1",
+                label: "IDENTITY",
+                title: "Identify Yourself.",
+                placeholder: "Full Name",
+                button: "Next // Confirm"
+            },
+            {
+                id: "step-2",
+                label: "OBJECTIVE",
+                title: "Current Status?",
+                options: [
+                    { id: "pain", label: "Acute Pain / Injury", desc: "Need immediate structural repair." },
+                    { id: "maintenance", label: "Performance Maintenance", desc: "Optimization & mobility work." }
+                ],
+                button: "Next // Status"
+            },
+            {
+                id: "step-3",
+                label: "CLEARANCE",
+                title: "Ready to Deploy?",
+                desc: "You are cleared for deployment.",
+                button: "INITIATE BOOKING SEQUENCE"
+            }
+        ]
     }
 };

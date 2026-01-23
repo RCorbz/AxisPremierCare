@@ -71,9 +71,9 @@ export default function FrictionFlow() {
 
             <div className="mt-8 border-t border-primary/20 pt-4 flex justify-between items-center">
               <p className="font-mono text-xs uppercase tracking-wider text-primary">{newWay.efficiency}</p>
-              <button className="text-xs font-bold text-white hover:text-primary uppercase tracking-wider flex items-center gap-1">
+              <a href="#application" className="text-xs font-bold text-white hover:text-primary uppercase tracking-wider flex items-center gap-1">
                 {newWay.cta} <ArrowRight className="w-4 h-4" />
-              </button>
+              </a>
             </div>
           </div>
 

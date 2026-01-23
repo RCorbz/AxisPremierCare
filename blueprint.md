@@ -4,6 +4,10 @@
 
 This document outlines the design and implementation of the AXIS Performance Care website, a single-page application built with React and styled with Tailwind CSS. The application showcases the services of a mobile chiropractic business, emphasizing a "black card" aesthetic that is both modern and exclusive.
 
+## Product Roadmap
+> [!IMPORTANT]
+> The strategic roadmap, including HIPAA compliance, integrations, and milestones, is maintained in [ROADMAP.md](./ROADMAP.md).
+
 ## Project Details
 
 *   **Framework:** React (Vite)
@@ -35,7 +39,10 @@ The website's design is guided by a "black card" aesthetic, characterized by a d
 *   **Hero Section:** A full-screen hero section with a background image and a prominent call-to-action button.
 *   **Friction vs. Flow:** A section that contrasts the traditional chiropractic experience with the convenience of AXIS Performance Care.
 *   **How It Works:** A step-by-step guide to the service, presented in a clear and concise manner.
-*   **Membership Privileges:** A section that highlights the exclusive benefits of membership, including a visual representation of the "black card."
+*   **Membership Privileges:** A section that highlights the exclusive benefits of membership.
+*   **Concierge Booking Flow (Membership Application):** A custom "Vetting Wizard" component that replaces standard contact forms.
+    *   **Logic:** Includes "Corporate Access Code" validation (e.g., VIP/DELTA) to route to subsidized JaneApp URLs.
+    *   **Stateless:** No PHI stored. Handoff is via Deep Link to JaneApp.
 *   **Footer:** A footer with contact information and links to additional resources.
 
 ## Development Plan
@@ -49,5 +56,10 @@ The following steps were taken to build and refine the application:
     *   Incorrect file references and conflicting `jsx`/`tsx` files.
     *   An outdated Node.js version, which was resolved by updating the `.idx/dev.nix` file.
     *   A blank white screen caused by an incorrect script reference in `index.html`.
+5.  **Strategic Pivot (HIPAA & Roadmap):**
+    *   Established "Stateless" architecture (No PHI storage).
+    *   Created `ROADMAP.md` as the strategic source of truth.
+    *   Separated "Individual" vs. "Corporate" onboarding flows to support different pricing tiers.
+    *   Activated "Fallback Protocol" for JaneApp integration (Deep Linking vs. API Write).
 
-After resolving these issues, the application now renders correctly with the intended design and functionality.
+After resolving these issues and implementing the strategic pivot, the application now serves as a secure, high-end "front door" to the JaneApp ecosystem.

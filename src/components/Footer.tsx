@@ -1,4 +1,4 @@
-import { ArrowUpRight } from "lucide-react";
+import { Mail, Phone } from "lucide-react";
 import { CONTENT } from "../content";
 
 export default function Footer() {
@@ -42,11 +42,11 @@ export default function Footer() {
             <h4 className="text-sm font-bold text-white uppercase tracking-wider">COMMS</h4>
             <ul className="space-y-2 text-sm text-text-muted font-mono">
               <li className="flex items-center gap-2">
-                <span className="material-symbols-outlined text-[16px]">call</span>
+                <Phone size={16} />
                 {contactInfo.phone}
               </li>
               <li className="flex items-center gap-2">
-                <span className="material-symbols-outlined text-[16px]">mail</span>
+                <Mail size={16} />
                 {contactInfo.email}
               </li>
             </ul>
@@ -64,6 +64,6 @@ export default function Footer() {
           </div>
         </div>
       </div>
-    </footer>
+    </footer >
   );
 }
