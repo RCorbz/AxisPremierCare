@@ -6,22 +6,29 @@ This document outlines the design and implementation of the AXIS Performance Car
 
 ## Project Details
 
-*   **Framework:** React
-*   **Styling:** Tailwind CSS
-*   **Key Packages:** `lucide-react`
+*   **Framework:** React (Vite)
+*   **Language:** JavaScript/TypeScript
+*   **Styling:** Tailwind CSS (Critical for Black Card hex codes)
+*   **Icons:** `lucide-react`
+*   **Requirements:** Mobile-first (iPhone 15 optimized), SPA architecture.
 
 ### Design and Style
 
 The website's design is guided by a "black card" aesthetic, characterized by a dark color palette and a clean, minimalist layout. The following styles have been implemented:
 
-*   **Color Palette:**
-    *   `rich-black`: `#0a0a0a`
-    *   `charcoal-grey`: `#171717`
-    *   `electric-volt`: `#DFFF00`
-    *   `cyan-accent`: `#00E5FF`
-    *   `silver-text`: `#A3A3A3`
+*   **Color Palette ("Black Card" Theme):**
+    *   `matte-black`: `#121212` (Background)
+    *   `charcoal-grey`: `#1C1C1C` (Cards/Sections)
+    *   `electric-volt`: `#CCFF00` (Accent - Buttons/Icons)
+    *   `silver-text`: `#A3A3A3` (Body)
+    *   *Note: Replaced old Blue/Cyan palette with strict Matte Black/Volt.*
 *   **Typography:** The `Inter` font is used throughout the site to ensure a clean and readable experience.
 *   **Layout:** The application is structured as a single-page layout with multiple sections, each designed to be visually distinct and informative.
+
+### Brand Guardrails (CRITICAL)
+
+*   **NO BEDROOM:** The environment must be clinical, professional, and elite. Avoid any imagery or layout that suggests a home bedroom setting.
+*   **NO INSURANCE:** This is a cash-pay, premium service. Do not include insurance logos, "insurance accepted" badges, or typical medical insurance language.
 
 ### Implemented Features
 

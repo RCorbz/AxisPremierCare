@@ -6,11 +6,11 @@ import { ArrowRight, Check, MapPin, Shield, Smartphone } from 'lucide-react';
 
 const AxisLanding = () => {
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-white font-sans selection:bg-[#DFFF00] selection:text-black">
+    <div className="min-h-screen bg-background-dark text-white font-sans selection:bg-primary selection:text-black">
       
       {/* SECTION 1: HERO */}
       <header className="px-6 py-24 md:py-32 max-w-7xl mx-auto flex flex-col items-start justify-center min-h-[80vh]">
-        <span className="text-[#DFFF00] tracking-[0.2em] text-sm font-bold uppercase mb-6">
+        <span className="text-primary tracking-[0.2em] text-sm font-bold uppercase mb-6">
           Axis Performance Care
         </span>
         <h1 className="text-5xl md:text-7xl font-bold leading-tight mb-8 tracking-tight">
@@ -19,11 +19,11 @@ const AxisLanding = () => {
             RECOVERY. DELIVERED.
           </span>
         </h1>
-        <p className="text-gray-400 text-lg md:text-xl max-w-2xl mb-10 leading-relaxed">
+        <p className="text-text-muted text-lg md:text-xl max-w-2xl mb-10 leading-relaxed">
           Skip the waiting room. Dr. Hanson brings hospital-grade structural care to your 
           living room in Bountiful. Acute pain & mobility relief for high-performers.
         </p>
-        <button className="bg-[#DFFF00] text-black px-8 py-4 font-bold text-lg rounded-sm hover:bg-white transition-colors flex items-center gap-2 group">
+        <button className="bg-primary text-black px-8 py-4 font-bold text-lg rounded-sm hover:bg-white transition-colors flex items-center gap-2 group">
           REQUEST ACCESS
           <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
         </button>

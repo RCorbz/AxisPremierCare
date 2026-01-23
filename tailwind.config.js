@@ -1,25 +1,22 @@
 const plugin = require('tailwindcss/plugin');
 
 /** @type {import('tailwindcss').Config} */
-export default {
+module.exports = {
   darkMode: "class",
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
       colors: {
-        // These are the colors from your Stitch design
-        "primary": "#d9ff00",
+        // Black Card Palette
+        "primary": "#CCFF00", // Electric Volt
         "background-light": "#f8f8f5",
-        "background-dark": "#0a0a0a",
-        "surface-dark": "#171717",
-        "surface-border": "#262626",
-        "text-muted": "#A3A3A3"
+        "background-dark": "#121212", // Matte Black
+        "surface-dark": "#1C1C1C", // Charcoal Grey
+        "surface-border": "#2A2A2A", // Subtle Border
+        "text-muted": "#A3A3A3" // Silver
       },
       fontFamily: {
         sans: ['Inter', 'sans-serif'],
@@ -37,7 +34,7 @@ export default {
     },
   },
   plugins: [
-    plugin(function({ addUtilities, theme }) {
+    plugin(function ({ addUtilities, theme }) {
       addUtilities({
         '.text-glow': {
           textShadow: theme('textShadow.glow-primary'),

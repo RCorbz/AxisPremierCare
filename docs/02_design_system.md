@@ -1,13 +1,13 @@
 # AXIS Design System ("The Black Card" Theme)
 
 ## Color Palette
-We use a strict "Dark Mode" aesthetic to signal exclusivity.
-- **Background:** `#0a0a0a` (Rich OLED Black - NOT pure #000000).
-- **Surface/Cards:** `#171717` (Charcoal Grey for sections/cards).
-- **Borders:** `#262626` (Subtle separation).
+We use a strict "Black Card" aesthetic to signal exclusivity.
+- **Background:** `#121212` (Matte Black - Increased warmth/softness compared to OLED black).
+- **Surface/Cards:** `#1C1C1C` (Deep Charcoal for sections/cards).
+- **Borders:** `#2A2A2A` (Subtle separation).
 - **Primary Text:** `#FFFFFF` (Headlines).
 - **Secondary Text:** `#A3A3A3` (Body text/Silver).
-- **Accent/Action:** `#DFFF00` (Electric Volt / Chartreuse). Use ONLY for Buttons and Icons.
+- **Accent/Action:** `#CCFF00` (Electric Volt). Use ONLY for Buttons and Icons. High impact.
 
 ## Typography
 - **Font Family:** `Inter` or `Roboto` (Sans-serif).
@@ -16,6 +16,6 @@ We use a strict "Dark Mode" aesthetic to signal exclusivity.
 - **Overline Text:** All Caps, Wide letter spacing (0.2em).
 
 ## UI Elements
-- **Buttons:** Sharp corners (`rounded-sm`), High contrast (Volt background, Black text). Hover state: White background.
-- **Icons:** Thin stroke, sterile look (`lucide-react`).
+- **Buttons:** Sharp corners (`rounded-sm`), High contrast (Electric Volt background, Black text). Hover state: White background.
+- **Icons:** Thin stroke, sterile look (`lucide-react`). Color: Electric Volt.
 - **Layout:** Wide, breathable spacing (`py-24`, `px-6`).
