@@ -29,17 +29,16 @@ export default function Footer() {
           </div>
 
           <div className="space-y-4">
-            <h4 className="text-sm font-bold text-white uppercase tracking-wider">SECTOR</h4>
+            <h4 className="text-sm font-bold text-white uppercase tracking-wider">REGION</h4>
             <ul className="space-y-2 text-sm text-text-muted font-mono">
               <li>Bountiful, UT</li>
               <li>Davis County</li>
               <li>Salt Lake Metro North</li>
-              <li>COORD: 40.88N, 111.88W</li>
             </ul>
           </div>
 
           <div className="space-y-4">
-            <h4 className="text-sm font-bold text-white uppercase tracking-wider">COMMS</h4>
+            <h4 className="text-sm font-bold text-white uppercase tracking-wider">CONTACT</h4>
             <ul className="space-y-2 text-sm text-text-muted font-mono">
               <li className="flex items-center gap-2">
                 <Phone size={16} />
@@ -61,6 +60,7 @@ export default function Footer() {
           <div className="flex gap-6 mt-4 md:mt-0">
             <a href="#" className="hover:text-white transition-colors">PRIVACY PROTOCOL</a>
             <a href="#" className="hover:text-white transition-colors">TERMS OF ENGAGEMENT</a>
+            <a href="/command-center" className="ml-4 rounded bg-white/5 px-2 py-1 text-[10px] font-bold text-text-muted transition-colors hover:bg-primary hover:text-black" title="Admin Command Center">CMD</a>
           </div>
         </div>
       </div>

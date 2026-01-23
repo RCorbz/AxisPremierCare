@@ -1,8 +1,6 @@
-# AXIS Performance Care - Blueprint
-
 ## Overview
 
-This document outlines the design and implementation of the AXIS Performance Care website, a single-page application built with React and styled with Tailwind CSS. The application showcases the services of a mobile chiropractic business, emphasizing a "black card" aesthetic that is both modern and exclusive.
+This document outlines the design and implementation of the AXIS Premier Care website. It is not just a "website" but a high-performance **Concierge Interface** built with React and Tailwind CSS. The application serves as the exclusive "front door" for a mobile chiropractic service, designed to feel like a **"Black Card"** membership experience—frictionless, elite, and secure.
 
 ## Product Roadmap
 > [!IMPORTANT]
@@ -12,38 +10,51 @@ This document outlines the design and implementation of the AXIS Performance Car
 
 *   **Framework:** React (Vite)
 *   **Language:** JavaScript/TypeScript
-*   **Styling:** Tailwind CSS (Critical for Black Card hex codes)
+*   **Styling:** Tailwind CSS (Strict "Matte Black" & "Electric Volt" scheme)
 *   **Icons:** `lucide-react`
 *   **Requirements:** Mobile-first (iPhone 15 optimized), SPA architecture.
 
-### Design and Style
+### Design and Style ("The Black Card Protocol")
 
-The website's design is guided by a "black card" aesthetic, characterized by a dark color palette and a clean, minimalist layout. The following styles have been implemented:
+The aesthetic is **Performance Luxury**. It is not "medical" (cold, sterile) nor "tactical" (aggressive, chaotic). It is **Precision**.
 
-*   **Color Palette ("Black Card" Theme):**
-    *   `matte-black`: `#121212` (Background)
-    *   `charcoal-grey`: `#1C1C1C` (Cards/Sections)
-    *   `electric-volt`: `#CCFF00` (Accent - Buttons/Icons)
-    *   `silver-text`: `#A3A3A3` (Body)
-    *   *Note: Replaced old Blue/Cyan palette with strict Matte Black/Volt.*
-*   **Typography:** The `Inter` font is used throughout the site to ensure a clean and readable experience.
-*   **Layout:** The application is structured as a single-page layout with multiple sections, each designed to be visually distinct and informative.
+*   **Color Palette:**
+    *   `matte-black`: `#121212` (Infinite Depth Background)
+    *   `charcoal-grey`: `#1C1C1C` (Surface Layers)
+    *   `electric-volt`: `#CCFF00` (The "Go" Signal - Buttons/Icons)
+    *   `silver-text`: `#A3A3A3` (Secondary Information)
+*   **Typography:** `Inter` (Clean, Modern, Universal).
+*   **UX Philosophy:** **Progressive Disclosure.**
+    *   The user is intelligent. Do not overwhelm them.
+    *   Initial view is minimal: **Hero + Request Access**.
+    *   Details ("Why?", "How?", "Perks") are hidden behind an optional "Explore Protocol" interaction.
 
-### Brand Guardrails (CRITICAL)
+### Communication & Tone Guardrails (CRITICAL)
 
-*   **NO BEDROOM:** The environment must be clinical, professional, and elite. Avoid any imagery or layout that suggests a home bedroom setting.
-*   **NO INSURANCE:** This is a cash-pay, premium service. Do not include insurance logos, "insurance accepted" badges, or typical medical insurance language.
+*   **VOICE:** "Performance Concierge".
+    *   *Do/Say:* "Request Access", "Reserve", "Protocol", "Optimization", "Unauthorized".
+    *   *Don't/Say:* "Book Now", "Schedule Appointment", "Cracking", "Insurance", "Sorry".
+*   **TONE:** Respectful, High-Status, Frictionless.
+    *   *Example Error:* "Please confirm you have entered the code correctly." (Polite, firm).
+    *   *Bad Error:* "Invalid Code." (Abrupt, robotic).
+*   **NO BEDROOM:** The environment must be clinical, professional, and elite.
+*   **NO INSURANCE:** This is a cash-pay, premium service. No insurance logos.
 
 ### Implemented Features
 
-*   **Hero Section:** A full-screen hero section with a background image and a prominent call-to-action button.
-*   **Friction vs. Flow:** A section that contrasts the traditional chiropractic experience with the convenience of AXIS Performance Care.
-*   **How It Works:** A step-by-step guide to the service, presented in a clear and concise manner.
-*   **Membership Privileges:** A section that highlights the exclusive benefits of membership.
-*   **Concierge Booking Flow (Membership Application):** A custom "Vetting Wizard" component that replaces standard contact forms.
-    *   **Logic:** Includes "Corporate Access Code" validation (e.g., VIP/DELTA) to route to subsidized JaneApp URLs.
-    *   **Stateless:** No PHI stored. Handoff is via Deep Link to JaneApp.
-*   **Footer:** A footer with contact information and links to additional resources.
+*   **Hero Section:** High-impact "Unlock Your 10x Potential" positioning. Contains "Progressive Disclosure" trigger.
+*   **Progressive Disclosure Layer:**
+    *   *Hidden by default:* Friction Flow (The "Why"), Workflow (The "How"), Performance Club (The "Perks").
+    *   *Revealed on demand:* Maintains a clean, high-end initial impression.
+*   **Concierge Booking Flow (Membership Application):**
+    *   **Logic:** Multi-step wizard (Access -> Identity -> Goals -> Confirmation).
+    *   **Access Control:** Validates "Corporate Access Codes" (e.g., DELTA, VIP) with polite error handling.
+    *   **Handoff:** Deep links to JaneApp for final scheduling (no PHI storage).
+*   **Client Portal (The Data Stronghold):**
+    *   **Authentication:** Firebase Phone Auth (SMS) for secure, password-less login.
+    *   **Dashboard:** Modular cards (`StatusCard`, `MissionFilesCard`, `IntelCard`).
+    *   **Data Linkage:** `JaneService` (Mock) simulates appointment lookup.
+*   **Footer:** Minimalist, polite, includes "Region" and "Contact" info.
 
 ## Development Plan
 

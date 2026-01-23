@@ -3,6 +3,7 @@ import { AuthProvider } from './contexts/AuthContext';
 import HomePage from './pages/Home';
 import Login from './components/auth/Login';
 import Portal from './pages/Portal';
+import CommandCenter from './pages/CommandCenter';
 
 export default function App() {
   return (
@@ -13,6 +14,7 @@ export default function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/login" element={<Login />} />
             <Route path="/portal" element={<Portal />} />
+            <Route path="/command-center" element={<CommandCenter />} />
           </Routes>
         </div>
       </Router>

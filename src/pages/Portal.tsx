@@ -1,16 +1,51 @@
 import { useAuth } from "../contexts/AuthContext";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { LogOut, ShieldCheck, FileText, Activity } from "lucide-react";
+import { LogOut, Loader2 } from "lucide-react";
+import { JaneService, type JaneProfile, type JaneAppointment } from "../services/jane";
+import StatusCard from "../components/portal/StatusCard";
+import MissionFilesCard from "../components/portal/MissionFilesCard";
+import IntelCard from "../components/portal/IntelCard";
 
 export default function Portal() {
     const { currentUser, logout } = useAuth();
     const navigate = useNavigate();
 
+    const [loading, setLoading] = useState(true);
+    const [profile, setProfile] = useState<JaneProfile | null>(null);
+    const [appointments, setAppointments] = useState<{ upcoming: JaneAppointment[], past: JaneAppointment[] }>({ upcoming: [], past: [] });
+
+    const [error, setError] = useState("");
+
     useEffect(() => {
         if (!currentUser) {
             navigate("/login");
+            return;
         }
+
+        const fetchData = async () => {
+            setLoading(true);
+            setError("");
+            try {
+                // Step 1: Find Jane Profile by Phone (Linkage Logic)
+                const janeProfile = await JaneService.findPatientByPhone(currentUser.phoneNumber);
+                setProfile(janeProfile);
+
+                if (janeProfile) {
+                    // Step 2: Fetch Appointments if linked
+                    const apps = await JaneService.getAppointments(janeProfile.id);
+                    setAppointments(apps);
+                }
+            } catch (err) {
+                console.error("Failed to fetch portal data:", err);
+                setError("CONNECTION_FAILURE: Linkage System Unreachable.");
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchData();
+
     }, [currentUser, navigate]);
 
     const handleLogout = async () => {
@@ -40,43 +75,31 @@ export default function Portal() {
             </header>
 
             {/* Main Dashboard */}
-            <main className="mx-auto max-w-7xl mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-
-                {/* Card 1: Status */}
-                <div className="rounded-xl border border-primary/20 bg-surface-dark p-8 shadow-[0_0_20px_-5px_rgba(204,255,0,0.1)]">
-                    <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
-                        <ShieldCheck />
-                    </div>
-                    <h3 className="text-lg font-bold text-white uppercase tracking-wider">Clearance Status</h3>
-                    <p className="mt-2 text-3xl font-black text-primary">ACTIVE</p>
-                    <p className="mt-2 text-sm text-text-muted">You are authorized for deployment.</p>
+            {loading ? (
+                <div className="flex h-[60vh] items-center justify-center">
+                    <Loader2 className="animate-spin text-primary" size={48} />
                 </div>
-
-                {/* Card 2: Mission Files */}
-                <div className="rounded-xl border border-surface-border bg-surface-dark p-8 transition-colors hover:border-primary/50">
-                    <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-surface-border text-white">
-                        <FileText />
+            ) : error ? (
+                <div className="mx-auto mt-20 max-w-md text-center">
+                    <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full bg-red-900/20 text-red-500">
+                        <span className="material-symbols-outlined text-[32px]">warning</span>
                     </div>
-                    <h3 className="text-lg font-bold text-white uppercase tracking-wider">After-Action Reports</h3>
-                    <div className="mt-4 space-y-2">
-                        <div className="flex items-center justify-between rounded bg-background-dark p-3 text-sm text-text-muted">
-                            <span>No reports on file.</span>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Card 3: Intel */}
-                <div className="rounded-xl border border-surface-border bg-surface-dark p-8 transition-colors hover:border-primary/50">
-                    <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-surface-border text-white">
-                        <Activity />
-                    </div>
-                    <h3 className="text-lg font-bold text-white uppercase tracking-wider">Intel Library</h3>
-                    <button className="mt-4 w-full rounded bg-background-dark py-3 text-sm font-bold text-text-muted hover:text-white transition-colors">
-                        Locked (Requires Deployment)
+                    <h2 className="text-xl font-bold text-white uppercase tracking-wider">System Alert</h2>
+                    <p className="mt-2 text-text-muted">{error}</p>
+                    <button
+                        onClick={() => window.location.reload()}
+                        className="mt-6 rounded-sm border border-surface-border bg-surface-dark px-6 py-2 text-sm font-bold text-white hover:bg-white hover:text-black transition-colors uppercase"
+                    >
+                        Retry Connection
                     </button>
                 </div>
-
-            </main>
+            ) : (
+                <main className="mx-auto max-w-7xl mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                    <StatusCard profile={profile} />
+                    <MissionFilesCard profile={profile} appointments={appointments} />
+                    <IntelCard profile={profile} />
+                </main>
+            )}
         </div>
     );
 }

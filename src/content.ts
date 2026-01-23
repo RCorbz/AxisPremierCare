@@ -1,27 +1,27 @@
 export const CONTENT = {
     brand: {
-        name: "AXIS Performance Care",
+        name: "AXIS PREMIER CARE",
         tagline: "High-Performance Recovery. Delivered.",
-        overline: "AXIS PERFORMANCE CARE",
+        overline: "AXIS PREMIER CARE",
     },
     hero: {
         headline: {
-            line1: "HIGH-PERFORMANCE",
-            line2: "RECOVERY. DELIVERED."
+            line1: "UNLOCK YOUR",
+            line2: "10X POTENTIAL."
         },
-        subhead: "Skip the waiting room. Dr. Hanson brings hospital-grade structural care to your living room in Bountiful. Acute pain & mobility relief for high-performers.",
+        subhead: "Hospital-grade structural optimization, delivered to your sanctuary. We handle the logistics; you focus on the win.",
         cta: "REQUEST ACCESS",
         socialProof: "Limited to 50 Founding Members"
     },
     frictionFlow: {
-        header: "Situation Report",
-        subHeader: "FRICTION VS. FLOW",
+        header: "WHY AXIS?",
+        subHeader: "THE LANDSCAPE", // Keeping as sub or removing? User said "rename and friction vs flow". I'll put "Why Axis?" as main.
         oldWay: {
             title: "Standard Care",
             items: [
                 { title: "Commute & Traffic", desc: "Wasted hours in transit." },
                 { title: "Waiting Room Limbo", desc: "20+ minutes reading old magazines." },
-                { title: "Rush Hour Treatment", desc: "5 minutes of rushed adjustment." }
+                { title: "Rush Hour Treatment", desc: "5 minutes of generic adjustment." }
             ],
             efficiency: "Efficiency Rating: 12%"
         },
@@ -34,22 +34,22 @@ export const CONTENT = {
                 { title: "Deep Work", desc: "60 minutes of manual therapy & optimization." }
             ],
             efficiency: "Efficiency Rating: 100%",
-            cta: "Deploy Now"
+            cta: "Request Access"
         }
     },
     workflow: {
-        header: "THE AXIS WORKFLOW",
+        header: "WHAT NOW?",
         steps: [
-            { number: 1, title: "You Request Access", desc: "Fill out the secure intake. We limit our route to ensure availability for members." },
-            { number: 2, title: "We Deploy", desc: "Dr. Hanson arrives. We set up a sterile field in your office or home in 3 minutes." },
+            { number: 1, title: "Request Access", desc: "Fill out the performance intake. We limit our route to ensure availability for members." },
+            { number: 2, title: "We Arrive", desc: "Dr. Corbaley arrives. We set up with zero footprint in your office or home in 3 minutes." },
             { number: 3, title: "You Perform", desc: "30 minutes of structural work. You return to velocity immediately. No driving." }
         ]
     },
     membership: {
         header: "MEMBERSHIP PRIVILEGES",
         perks: [
-            { title: "The \"Bat Phone\"", desc: "Direct text access to Dr. Hanson. 90-minute triage response time for members." },
-            { title: "Sterile Field Protocol", desc: "We use hospital-grade shoe covers and silicone mats. We respect your sanctuary." },
+            { title: "Direct Access Line", desc: "Direct text access to Dr. Corbaley. 90-minute triage response time for members." },
+            { title: "Sanctuary Protection", desc: "We honor your space with absolute reverence. Hospital-grade cleanliness, zero footprint." },
             { title: "Family Unlock", desc: "Waived travel fees for spouses or family members treated at the same location." }
         ]
     },
@@ -66,19 +66,29 @@ export const CONTENT = {
                 title: "Have an Access Code?",
                 desc: "If your organization provides AXIS coverage, enter your code here. Otherwise, continue as an Individual.",
                 placeholder: "Enter Code (Optional)",
-                button: "Verify // Continue"
+                button: "Verify // Check Eligibility"
+            },
+            {
+                id: "step-location",
+                label: "LOCATION",
+                title: "Verify Your Location.",
+                desc: "We currently deploy to Bountiful, Centerville, NSL, and Farmington.",
+                placeholder: "Zip Code",
+                button: "Verify // Confirm Range"
             },
             {
                 id: "step-1",
-                label: "IDENTITY",
-                title: "Identify Yourself.",
+                label: "PROFILE",
+                title: "Your Profile.",
                 placeholder: "Full Name",
+                placeholderEmail: "Secure Email",
+                placeholderPhone: "Mobile Number",
                 button: "Next // Confirm"
             },
             {
                 id: "step-2",
-                label: "OBJECTIVE",
-                title: "Current Status?",
+                label: "GOALS",
+                title: "Your Goals?",
                 options: [
                     { id: "pain", label: "Acute Pain / Injury", desc: "Need immediate structural repair." },
                     { id: "maintenance", label: "Performance Maintenance", desc: "Optimization & mobility work." }
@@ -87,10 +97,10 @@ export const CONTENT = {
             },
             {
                 id: "step-3",
-                label: "CLEARANCE",
-                title: "Ready to Deploy?",
-                desc: "You are cleared for deployment.",
-                button: "INITIATE BOOKING SEQUENCE"
+                label: "CONFIRM",
+                title: "WELCOME TO AXIS.",
+                desc: "Your access is confirmed. Let's get a Specialist to your location immediately.",
+                button: "SCHEDULE EXPERIENCE"
             }
         ]
     }

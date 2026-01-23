@@ -2,7 +2,11 @@ import { ArrowRight } from "lucide-react";
 import { CONTENT } from "../content";
 import heroBg from "../assets/hero-bg.jpg";
 
-export default function HeroSection() {
+interface HeroSectionProps {
+  onExplore: () => void;
+}
+
+export default function HeroSection({ onExplore }: HeroSectionProps) {
 
   const { headline, subhead, cta, socialProof } = CONTENT.hero;
 
@@ -39,15 +43,28 @@ export default function HeroSection() {
             {cta}
             <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
           </a>
-          <p className="text-sm text-text-muted/60 flex items-center gap-2">
-            <span className="flex -space-x-1">
-              {[1, 2, 3].map((i) => (
-                <span key={i} className="h-2 w-2 rounded-full bg-primary ring-2 ring-background-dark"></span>
-              ))}
-            </span>
-            {socialProof}
-          </p>
+
+          {/* Progressive Disclosure Trigger */}
+          <button
+            onClick={onExplore}
+            className="mt-8 flex flex-col items-center gap-2 text-xs font-bold tracking-[0.2em] text-text-muted/50 transition-colors hover:text-primary uppercase"
+          >
+            Explore Protocol
+            <span className="animate-bounce">↓</span>
+          </button>
         </div>
+      </div>
+
+      {/* Social Proof (moved to bottom absolute or keep here? The original design had it in the list. Let's keep it minimal as requested.) */}
+      <div className="absolute bottom-8 left-0 right-0 flex justify-center">
+        <p className="text-sm text-text-muted/30 flex items-center gap-2">
+          <span className="flex -space-x-1">
+            {[1, 2, 3].map((i) => (
+              <span key={i} className="h-1.5 w-1.5 rounded-full bg-primary/50 ring-2 ring-background-dark"></span>
+            ))}
+          </span>
+          {socialProof}
+        </p>
       </div>
     </header>
   );
