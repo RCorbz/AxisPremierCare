@@ -1,6 +1,0 @@
-<svg viewBox="0 0 100 100" fill="none" stroke="#CCFF00" stroke-width="6" stroke-linecap="square" stroke-linejoin="miter" xmlns="http://www.w3.org/2000/svg">
-    <!-- Perfect geometric circle -->
-    <circle cx="50" cy="50" r="40" />
-    <!-- Razor sharp A - Pilot Pin Style -->
-    <path d="M50 10 L15 90 M50 10 L85 90 M20 65 L80 65" />
-</svg>
