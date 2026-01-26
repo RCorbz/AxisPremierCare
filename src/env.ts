@@ -8,9 +8,11 @@ const envSchema = z.object({
         .default("development"),
 });
 
+const getEnv = (key: string) => (process.env[key]?.trim() || "");
+
 const processEnv = {
-    NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL || "",
-    NEXT_PUBLIC_SUPABASE_ANON_KEY: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "",
+    NEXT_PUBLIC_SUPABASE_URL: getEnv("NEXT_PUBLIC_SUPABASE_URL"),
+    NEXT_PUBLIC_SUPABASE_ANON_KEY: getEnv("NEXT_PUBLIC_SUPABASE_ANON_KEY"),
     NODE_ENV: process.env.NODE_ENV,
 };
 
@@ -22,12 +24,10 @@ if (!parsed.success) {
         "❌ Invalid or missing environment variables:",
         parsed.error.flatten().fieldErrors,
     );
-    // Don't throw at runtime to prevent Middleware (Edge) from crashing entirely.
-    // Instead, we export a potentially "empty" env that will fail gracefully in Supabase client.
 }
 
 export const env = {
-    NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL || "",
-    NEXT_PUBLIC_SUPABASE_ANON_KEY: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "",
+    NEXT_PUBLIC_SUPABASE_URL: getEnv("NEXT_PUBLIC_SUPABASE_URL"),
+    NEXT_PUBLIC_SUPABASE_ANON_KEY: getEnv("NEXT_PUBLIC_SUPABASE_ANON_KEY"),
     NODE_ENV: (process.env.NODE_ENV as any) || "development",
 };

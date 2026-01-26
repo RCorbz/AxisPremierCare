@@ -21,6 +21,11 @@ export async function submitLead(formData: FormData) {
         };
     }
 
+    // Diagnostic logging for API Key (Safe/Masked)
+    const key = env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+    console.log(`[Diagnostic] Using Supabase URL: ${env.NEXT_PUBLIC_SUPABASE_URL}`);
+    console.log(`[Diagnostic] API Key Masked: ${key.substring(0, 4)}...${key.substring(key.length - 4)}`);
+
     const supabase = await createClient();
 
     const rawData = {
