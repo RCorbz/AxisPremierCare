@@ -226,7 +226,7 @@ export function WaitlistForm() {
                 <div className="flex items-center gap-2 text-electric-yellow">
                     <CheckCircle className="w-4 h-4" />
                     <span className="text-xs uppercase tracking-widest font-mono">
-                        {useCorpCode ? "Corporate Access Verified [DEBUG v4.0]" : `Checking Access for ${zipCode} [DEBUG v4.0]`}
+                        {useCorpCode ? "Corporate Access Verified" : `Checking Access for ${zipCode}`}
                     </span>
                 </div>
                 <button

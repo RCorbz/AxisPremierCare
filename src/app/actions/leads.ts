@@ -10,7 +10,7 @@ const leadSchema = z.object({
     email: z.string().email("Invalid email"),
     phone: z.string().min(1, "Phone is required"),
     interest_level: z.enum(["High", "Medium", "Low"]).default("Medium"),
-    notes: z.string().optional(),
+    notes: z.string().nullable().optional(),
 });
 
 export async function submitLead(formData: FormData) {
