@@ -50,25 +50,40 @@ export async function submitLead(formData: FormData) {
 
     console.log("Supabase Payload:", payload);
 
-    const { error, status, statusText } = await supabase
-        .from("leads")
-        .insert(payload as any);
+    try {
+        const { error, status, statusText } = await supabase
+            .from("leads")
+            .insert(payload as any);
 
-    if (error) {
-        console.error("Supabase Error Details:", {
-            error,
-            status,
-            statusText,
-            url: env.NEXT_PUBLIC_SUPABASE_URL.substring(0, 15) + "..."
-        });
+        if (error) {
+            console.error("Supabase Error Details:", {
+                error,
+                status,
+                statusText,
+                url: env.NEXT_PUBLIC_SUPABASE_URL.substring(0, 15) + "..."
+            });
+            return {
+                success: false,
+                message: `Submission Error: ${error.message} (${statusText || 'Unknown Connection Error'})`
+            };
+        }
+
+        console.log("Supabase Success! Status:", status);
+
+        revalidatePath("/admin");
+
+        // Include partial URL to help user confirm they are checking the right project dashboard
+        const projectIdPrefix = env.NEXT_PUBLIC_SUPABASE_URL.split('.')[0].replace('https://', '');
+
+        return {
+            success: true,
+            message: `Submission confirmed to project [${projectIdPrefix}...].`
+        };
+    } catch (err: any) {
+        console.error("Unexpected submission error:", err);
         return {
             success: false,
-            message: `Submission Error: ${error.message} (${statusText || 'Unknown Connection Error'})`
+            message: `Unexpected System Error: ${err.message || 'Check connection'}`
         };
     }
-
-    console.log("Supabase Success! Status:", status);
-
-    revalidatePath("/admin");
-    return { success: true, message: "Request received. We will deploy shortly." };
 }
