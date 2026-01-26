@@ -226,7 +226,7 @@ export function WaitlistForm() {
                 <div className="flex items-center gap-2 text-electric-yellow">
                     <CheckCircle className="w-4 h-4" />
                     <span className="text-xs uppercase tracking-widest font-mono">
-                        {useCorpCode ? "Corporate Access Verified" : `Checking Access for ${zipCode}`}
+                        {useCorpCode ? "Corporate Access Verified [DEBUG v2.0]" : `Checking Access for ${zipCode} [DEBUG v2.0]`}
                     </span>
                 </div>
                 <button
@@ -252,7 +252,7 @@ export function WaitlistForm() {
                         placeholder="J. DOE"
                     />
                     {result?.errors?.full_name && (
-                        <p className="text-red-500 text-xs">{result.errors.full_name[0]}</p>
+                        <p className="text-red-500 text-[10px] uppercase font-mono mt-1">{result.errors.full_name[0]}</p>
                     )}
                 </div>
 
@@ -268,6 +268,9 @@ export function WaitlistForm() {
                         className="w-full bg-black border border-zinc-800 p-4 text-white focus:border-electric-yellow focus:outline-none transition-colors rounded-none font-mono"
                         placeholder="(555) 000-0000"
                     />
+                    {result?.errors?.phone && (
+                        <p className="text-red-500 text-[10px] uppercase font-mono mt-1">{result.errors.phone[0]}</p>
+                    )}
                 </div>
             </div>
 
@@ -284,7 +287,7 @@ export function WaitlistForm() {
                     placeholder="EXEC@EXAMPLE.COM"
                 />
                 {result?.errors?.email && (
-                    <p className="text-red-500 text-xs">{result.errors.email[0]}</p>
+                    <p className="text-red-500 text-[10px] uppercase font-mono mt-1">{result.errors.email[0]}</p>
                 )}
             </div>
 

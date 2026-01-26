@@ -36,7 +36,12 @@ export async function submitLead(formData: FormData) {
     const validation = leadSchema.safeParse(rawData);
 
     if (!validation.success) {
-        return { success: false, errors: validation.error.flatten().fieldErrors };
+        console.warn("Validation Failed:", validation.error.flatten().fieldErrors);
+        return {
+            success: false,
+            message: "Validation Error: Please check your input fields.",
+            errors: validation.error.flatten().fieldErrors
+        };
     }
 
     // Append location info to notes
