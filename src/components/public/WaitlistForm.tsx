@@ -58,32 +58,37 @@ export function WaitlistForm() {
         setStep("intake");
     }
 
-    async function handleSubmit(formData: FormData) {
+    async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+        e.preventDefault();
+        console.log("Client: Form submission started");
         setIsPending(true);
         setResult(null);
 
-        // Append location data manually since they aren't in the form fields of the intake step if we don't put hidden inputs
-        // Or we can just rely on the hidden inputs we will add
+        const formData = new FormData(e.currentTarget);
+
+        // Append location data manually
         formData.append("zip_code", zipCode);
         if (useCorpCode) formData.append("corporate_code", corpCode);
         if (outOfAreaConfirmed) formData.append("notes", "[WARN] User accepted Out-of-Area travel fees.");
 
-        // Add artificial delay for "processing" feel
-        await new Promise(resolve => setTimeout(resolve, 800));
+        console.log("Client: Sending data to server action...");
 
         try {
             const response = await submitLead(formData);
+            console.log("Client: Server response received", response);
             setResult(response);
             if (response.success) {
                 setStep("success");
             }
         } catch (err: any) {
+            console.error("Client: Submission catch triggered", err);
             setResult({
                 success: false,
                 message: `Connection Error: ${err.message || "The server failed to respond. Check your internet or try again."}`
             });
         } finally {
             setIsPending(false);
+            console.log("Client: Submission flow finished");
         }
     }
 
@@ -215,7 +220,7 @@ export function WaitlistForm() {
     }
 
     return (
-        <form action={handleSubmit} className="space-y-6 max-w-xl mx-auto animate-in slide-in-from-right-8 duration-500">
+        <form onSubmit={handleSubmit} className="space-y-6 max-w-xl mx-auto animate-in slide-in-from-right-8 duration-500">
             {/* Context Header */}
             <div className="flex items-center justify-between mb-8 border-b border-zinc-800 pb-4">
                 <div className="flex items-center gap-2 text-electric-yellow">
