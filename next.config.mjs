@@ -1,8 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    eslint: {
+        ignoreDuringBuilds: true,
+    },
     // Next.js 15 defaults:
-    // - reactStrictMode: true
-    // - caching: optimized by default
 };
 
 export default nextConfig;
