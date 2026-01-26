@@ -36,11 +36,16 @@ export async function submitLead(formData: FormData) {
     const validation = leadSchema.safeParse(rawData);
 
     if (!validation.success) {
-        console.warn("Validation Failed:", validation.error.flatten().fieldErrors);
+        const fieldErrors = validation.error.flatten().fieldErrors;
+        const errorDetails = Object.entries(fieldErrors)
+            .map(([field, msgs]) => `${field}: ${msgs?.join(", ")}`)
+            .join(" | ");
+
+        console.warn("Validation Failed:", fieldErrors);
         return {
             success: false,
-            message: "Validation Error: Please check your input fields.",
-            errors: validation.error.flatten().fieldErrors
+            message: `Validation Error: ${errorDetails}`,
+            errors: fieldErrors
         };
     }
 
