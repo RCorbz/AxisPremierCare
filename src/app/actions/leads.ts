@@ -2,6 +2,7 @@
 
 import { createClient } from "@/lib/supabase/server";
 import { z } from "zod";
+import { env } from "@/env";
 import { revalidatePath } from "next/cache";
 
 const leadSchema = z.object({
@@ -47,14 +48,23 @@ export async function submitLead(formData: FormData) {
         status: "New" as "New"
     };
 
-    const { error } = await supabase
+    console.log("Supabase Payload:", payload);
+
+    const { error, status, statusText } = await supabase
         .from("leads")
         .insert(payload as any);
 
     if (error) {
-        console.error("Supabase Error:", error);
+        console.error("Supabase Error Details:", {
+            error,
+            status,
+            statusText,
+            url: env.NEXT_PUBLIC_SUPABASE_URL.substring(0, 15) + "..."
+        });
         return { success: false, message: "Failed to submit. Please try again." };
     }
+
+    console.log("Supabase Success! Status:", status);
 
     revalidatePath("/admin");
     return { success: true, message: "Request received. We will deploy shortly." };
