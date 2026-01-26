@@ -71,11 +71,19 @@ export function WaitlistForm() {
         // Add artificial delay for "processing" feel
         await new Promise(resolve => setTimeout(resolve, 800));
 
-        const response = await submitLead(formData);
-        setResult(response);
-        setIsPending(false);
-        if (response.success) {
-            setStep("success");
+        try {
+            const response = await submitLead(formData);
+            setResult(response);
+            if (response.success) {
+                setStep("success");
+            }
+        } catch (err: any) {
+            setResult({
+                success: false,
+                message: `Connection Error: ${err.message || "The server failed to respond. Check your internet or try again."}`
+            });
+        } finally {
+            setIsPending(false);
         }
     }
 

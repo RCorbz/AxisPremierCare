@@ -14,6 +14,13 @@ const leadSchema = z.object({
 });
 
 export async function submitLead(formData: FormData) {
+    if (!env.NEXT_PUBLIC_SUPABASE_URL || !env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+        return {
+            success: false,
+            message: "Configuration Error: Supabase keys are missing from the server environment. Please check Vercel settings."
+        };
+    }
+
     const supabase = await createClient();
 
     const rawData = {
