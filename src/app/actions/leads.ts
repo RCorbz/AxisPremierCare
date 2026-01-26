@@ -21,6 +21,8 @@ export async function submitLead(formData: FormData) {
         phone: formData.get("phone"),
         interest_level: formData.get("interest_level") || "Medium",
         notes: formData.get("notes"),
+        zip_code: formData.get("zip_code"),
+        corporate_code: formData.get("corporate_code"),
     };
 
     const validation = leadSchema.safeParse(rawData);
@@ -29,21 +31,25 @@ export async function submitLead(formData: FormData) {
         return { success: false, errors: validation.error.flatten().fieldErrors };
     }
 
+    // Append location info to notes
+    let notes = validation.data.notes || "";
+    if (rawData.zip_code) notes += `\n[Location] Zip: ${rawData.zip_code}`;
+    if (rawData.corporate_code) notes += `\n[Location] Corporate Code: ${rawData.corporate_code}`;
+
     // Explicitly cast to unknown then to specific insert type if needed, 
     // or ensure validation.data properties match exactly.
-    // The issue is likely 'interest_level' string vs enum mismatch.
     const payload = {
         full_name: validation.data.full_name,
         email: validation.data.email || null,
         phone: validation.data.phone,
         interest_level: validation.data.interest_level as "High" | "Medium" | "Low",
-        notes: validation.data.notes || null,
+        notes: notes.trim() || null,
         status: "New" as "New"
     };
 
     const { error } = await supabase
         .from("leads")
-        .insert(payload);
+        .insert(payload as any);
 
     if (error) {
         console.error("Supabase Error:", error);

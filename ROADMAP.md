@@ -33,7 +33,7 @@ The goal is to create a "Black Card" experience where the technology feels magic
 
 ### 🧱 Technical Foundation
 - **SPA Architecture:** React + Vite (Fast, responsive).
-- **Hosting:** Firebase Hosting (scalable, secure headers).
+- **Hosting:** Vercel (Native Next.js support, Edge Network).
 - **Analytics:** Privacy-first analytics (no cookies/tracking of health data).
 
 ### 🚦 Exit Triggers (to move to Phase 2)
@@ -50,20 +50,19 @@ The goal is to create a "Black Card" experience where the technology feels magic
 
 ---
 
-## 🔒 Phase 2: The Data Stronghold (HIPAA, Intake & Portal)
-**Goal:** Collect intake data securely and provide a "Member" home base.
+## 🔒 Phase 2: Communications Automation (OpenPhone)
+**Goal:** Establish direct, high-value communication channels without a complex portal.
 
-### 1. The "Black Card" Portal (Client Experience)
-- **Objective:** A dedicated "Member Area" accessed via OTP (One-Time Password/Phone).
+### 1. The "Hotline" (Client Experience)
+- **Objective:** Direct line to the "Command Center" via OpenPhone.
 - **Features:**
-    - **"Intel" Library:** Exclusive protocols/videos unlocked after the first visit.
-    - **Upcoming Missions:** Appointment reminders and "Pre-Game" prep checklists.
-    - **Payment History:** Read-only view of past invoices (pulled via JaneApp API).
+    - **"Concierge Access":** Members get a dedicated VIP number.
+    - **Protocol Updates:** automated texts for appointment reminders (via Jane) or manual follow-ups.
 
 ### 2. Best Practices & Architecture (Intake)
 1.  **The "Hot Potato" Pattern:** 
     - We collect data in the browser (React).
-    - We toss it immediately to a secure middleware (Firebase Cloud Functions).
+    - We toss it immediately to a secure middleware (Supabase Edge Functions).
     - Middleware pushes it to JaneApp (via API or Secure Email parsing).
     - **CRITICAL:** We immediately *delete* the data from our middleware.
 
@@ -113,9 +112,9 @@ Since ScribeAI handles the "listening," our app focus is **Workflow Orchestratio
 
 ## 🌩️ Critical Blindspots & Mitigations (Risk Assessment)
 
-### 1. The "Identity Gap" (Blindspot)
-*Risk:* A user logs into our "Black Card" portal with their phone number (Firebase Auth). JaneApp knows them as `Patient ID: 12345`. How do we link these two without storing PHI?
-*   **Mitigation:** Create a "Linkage Table" in Firestore that *only* stores `{ firebase_uid: "abc", jane_patient_id: "123" }`. This is non-PHI data but allows us to fetch their specific records from JaneApp API on demand.
+### 1. Communication Silos (Blindspot)
+*Risk:* OpenPhone and JaneApp don't talk to each other automatically.
+*   **Mitigation:** Use the Admin Dashboard to surface JaneApp data and provide "Click-to-Dial" deep links into OpenPhone, acting as the bridge.
 
 ### 2. The "API Wall" (Technical Risk)
 *Risk:* JaneApp's API might be "Read-Only" for certain critical functions (e.g., specific Intake Form fields or "Draft Note" creation).
@@ -136,15 +135,17 @@ Since ScribeAI handles the "listening," our app focus is **Workflow Orchestratio
 ### Deferred / Polish
 -   **Navbar Finalization:** "Command Center" concept moved to UI Polish phase.
 
-- [x] **Phase 2: The Data Stronghold (Client Portal)**
-    -   **Goal:** Secure "Member Only" area.
-    -   **Auth:** Firebase SMS Login (Implemented).
-    -   **Linkage:** Smart lookup of JaneApp appointments (Mock Service Active).
-    -   **UI:** Dashboard with "Clearance Status" and "Mission Files".
+- [ ] **Phase 2: Communications (OpenPhone)**
+    -   **Goal:** Direct line established.
+    -   **Setup:** OpenPhone workspace configured with "Concierge" numbers.
+    -   **Integration:** "Click-to-Dial" links added to Admin Dashboard.
 
 ## 🚀 Phase 3: Pre-Launch Polish (The "Go Live" Checklist)
 -   [ ] **Codebase Audit:** Review for modularity, unused code, and hardcoded strings.
 -   [ ] **CX Refinement:** Ensure all loading states and error messages are "Premium".
 -   [ ] **Configuration:** Swap JaneApp placeholders with real URLs.
 -   [ ] **Analytics:** Implement privacy-first analytics.
--   [ ] **Domain:** SSL & Hosting.
+-   [ ] **Deployment (Vercel):**
+    -   [ ] **Project Setup:** Import repository to Vercel.
+    -   [ ] **Environment:** Configure `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY`.
+    -   [ ] **Domain:** Configure custom domain & SSL.

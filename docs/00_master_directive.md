@@ -75,3 +75,30 @@ The project is ready for launch when:
 1.  **Public Site:** A visitor can read the "Manifesto" and join the Waitlist (saving to Supabase).
 2.  **Admin Site:** The Doctor can log in, see the Jane App stats (via API), manage the Waitlist, and log a Sentiment entry.
 3.  **Design:** The app perfectly matches the "Breaker" Dark Mode aesthetic.
+
+---
+
+## 7. Voice & Tone ("The Signal")
+We maintain two distinct but compatible communication styles.
+
+### A. Client POV (Public Facing)
+**Vibe:** Exclusive, Concierge, High-Performance, Membership.
+**Directives:**
+1.  **Avoid** "Patient", "Clinic", "Appointment", "Waiting Room", "Doctor".
+2.  **Use** "Member", "Performance Lab", "Session", "Queue", "Specialist".
+3.  **Phrasing:** 
+    *   Instead of "Book Appointment" -> "Apply for Membership" or "Request Session".
+    *   Instead of "Travel Fee" -> "Concierge Access".
+    *   Instead of "Service Area" -> "Coverage Zone".
+
+### B. Doctor POV (Admin Dashboard)
+**Vibe:** Precision, Command Center, Air Traffic Control.
+**Directives:**
+1.  **Avoid** "Nice", "Soft", "Ambiguous" language.
+2.  **Use** "Status", "Metrics", "Pulse", "Radar", "Log".
+3.  **Phrasing:**
+    *   "Daily Revenue" -> "Daily Pulse".
+    *   "Leads" -> "Incoming Signal" or "Waiting Room".
+    *   "Journal" -> "Vibe Check" or "Captain's Log".
+
+*CRITICAL:* We never cross the streams. Don't use "Captain's Log" with a client, and don't use "Concierge Experience" in the raw data tables.

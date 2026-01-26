@@ -28,7 +28,7 @@ export function Hero() {
                         onClick={() => document.getElementById('waitlist')?.scrollIntoView({ behavior: 'smooth' })}
                         className="bg-electric-yellow text-black font-bold uppercase tracking-widest px-8 py-4 hover:bg-yellow-400 transition-colors flex items-center gap-2 group text-sm"
                     >
-                        Request Access
+                        Apply for Membership
                         <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                     </button>
 

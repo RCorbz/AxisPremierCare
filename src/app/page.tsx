@@ -16,11 +16,11 @@ export default function Home() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-5xl text-white font-mono uppercase tracking-tighter mb-6">
-              Initialize Protocol
+              Membership Application
             </h2>
             <p className="text-zinc-400 font-mono max-w-2xl mx-auto">
-              We limit our route density to ensure 3-minute response times for
-              members. Secure your spot in the Bountiful / Davis County sector.
+              We strictly limit our client list to ensure rapid response times.
+              Secure your availability in the Bountiful / Davis County service area.
             </p>
           </div>
 
