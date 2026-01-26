@@ -79,8 +79,9 @@ export async function submitLead(formData: FormData) {
 
         revalidatePath("/admin");
 
-        // Include partial URL to help user confirm they are checking the right project dashboard
-        const projectIdPrefix = env.NEXT_PUBLIC_SUPABASE_URL.split('.')[0].replace('https://', '');
+        // Safety check for URL before string manipulation
+        const url = env.NEXT_PUBLIC_SUPABASE_URL || "";
+        const projectIdPrefix = url.includes('.') ? url.split('.')[0].replace('https://', '') : 'unknown';
 
         return {
             success: true,

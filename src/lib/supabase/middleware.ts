@@ -7,6 +7,11 @@ export async function updateSession(request: NextRequest) {
         request,
     });
 
+    // Don't create client if keys are missing to prevent Edge Runtime crashes
+    if (!env.NEXT_PUBLIC_SUPABASE_URL || !env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+        return supabaseResponse;
+    }
+
     const supabase = createServerClient(
         env.NEXT_PUBLIC_SUPABASE_URL,
         env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
