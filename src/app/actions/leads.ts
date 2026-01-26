@@ -61,7 +61,10 @@ export async function submitLead(formData: FormData) {
             statusText,
             url: env.NEXT_PUBLIC_SUPABASE_URL.substring(0, 15) + "..."
         });
-        return { success: false, message: "Failed to submit. Please try again." };
+        return {
+            success: false,
+            message: `Submission Error: ${error.message} (${statusText || 'Unknown Connection Error'})`
+        };
     }
 
     console.log("Supabase Success! Status:", status);
