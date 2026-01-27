@@ -5,11 +5,11 @@ The application uses a **60-Second Membership** strategy designed for mobile-fir
 
 ```mermaid
 graph TD
-    Start((Visitor Entry)) --> Step1UI[Step 1: Identity]
+    Start((Visitor Entry)) --> Step1[Step 1: Identity]
     
-    Step1UI -->|Private Experience| Step2Priv[Step 2: Objective]
+    Step1 -->|Private Experience| Step2Priv[Step 2: Objective]
     
-    Step1UI -->|Corporate Service| CorpBranch{Triage}
+    Step1 -->|Corporate Service| CorpBranch{Triage}
     CorpBranch -->|New Partnership| Step2CorpNew[Step 2: Partnership Goals]
     CorpBranch -->|Employee Access| Step2CorpEmp[Step 2: Verify Access Code]
     
@@ -18,10 +18,9 @@ graph TD
     
     Step2Priv -->|Select Goal| Step3[Step 3: Outcome]
     Step3 -->|Select Target| Step4[Step 4: Location]
-    
     Step4 -->|Zip Check| Step5[Step 5: Intelligence]
     
-    Step5 -->|Name + Phone| Submit[Submit to Secure Server]
+    Step5 -->|Name + Phone| Submit[Submit Lead]
     Submit --> Success((Access Granted))
 ```
 

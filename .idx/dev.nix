@@ -15,6 +15,7 @@
       "eamodio.gitlens"
       "dbaeumer.vscode-eslint"
       "bradlc.vscode-tailwindcss"
+      "bierner.markdown-mermaid"
     ];
     previews = {
       enable = true;
