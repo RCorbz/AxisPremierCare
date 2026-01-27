@@ -1,9 +1,17 @@
 "use client";
 
+/**
+ * AXIS TONE GUARDRAIL:
+ * - Brand: Industrial Luxury / High-End Concierge.
+ * - Voice: Warm, Invitatory, Exclusive, Optimistic.
+ * - BANNED: Military, Tactical, Command/Control, Protocol, Sector, Registry, Validate.
+ * - PREFERRED: Journey, Selection, Curate, Unlock, Invitation, Pleasure, Welcome.
+ */
+
 import { useState, useRef, useEffect } from "react";
 import { submitLead, getAvailabilityStatus } from "@/app/actions/leads";
 import { cn } from "@/lib/utils";
-import { Loader2, ArrowRight, CheckCircle, MapPin, Building2, AlertTriangle, Activity, Zap, ClipboardCheck, ArrowLeft, Users, Briefcase, Key, Timer, Sparkles, ShieldCheck, Info, UserCheck, BarChart3, Terminal } from "lucide-react";
+import { Loader2, ArrowRight, CheckCircle, MapPin, Building2, AlertTriangle, Activity, Sparkles, ClipboardCheck, ArrowLeft, Users, Briefcase, Crown, Timer, ShieldCheck, Info, UserCheck, BarChart3, Gem, Heart, Star } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 type MembershipMode = "private" | "corporate_new" | "corporate_employee" | null;
@@ -26,9 +34,9 @@ export function WaitlistForm() {
     const goToStep = (target: Step) => setStep(target);
 
     // Logic States
-    const [availability, setAvailability] = useState<Record<string, any> | null>(null);
+    const [availability, setAvailability] = useState<Record<string, { whitelist?: string[];[key: string]: any }> | null>(null);
     const [isPending, setIsPending] = useState(false);
-    const [result, setResult] = useState<{ success: boolean; message?: string; errors?: any } | null>(null);
+    const [result, setResult] = useState<{ success: boolean; message?: string; errors?: Record<string, string[]> } | null>(null);
 
     // Form Selections
     const [objective, setObjective] = useState("");
@@ -144,10 +152,10 @@ export function WaitlistForm() {
 
         if (code === "AXIS2026") {
             setVerifiedEntity("Axis Premier Partner");
-            addUserMessage(`ACCESS CONFIRMED: ${code}`);
+            addUserMessage(`MEMBERSHIP UNLOCKED: ${code}`);
             await addConciergeMessage(
                 <div className="flex items-center gap-2 text-emerald-500 font-mono">
-                    <ShieldCheck className="w-4 h-4" />
+                    <Crown className="w-4 h-4" />
                     <span>Welcome home, member of <strong>Axis Premier Partner</strong>.</span>
                 </div>
             );
@@ -188,7 +196,7 @@ export function WaitlistForm() {
     const verifyLocation = async (e: React.FormEvent) => {
         e.preventDefault();
         const cleanZip = zipCode.trim();
-        addUserMessage(`Sector: ${cleanZip}`);
+        addUserMessage(`${cleanZip}`);
 
         let outOfRangeLocal = false;
         if (mode === "private") {
@@ -254,12 +262,12 @@ export function WaitlistForm() {
                 <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
                         <div className="w-1.5 h-1.5 rounded-full bg-electric-yellow shadow-[0_0_12px_rgba(250,204,21,0.8)]" />
-                        <span className="text-[11px] text-zinc-100 font-mono tracking-[0.4em] uppercase font-bold">Axis Concierge</span>
+                        <span className="text-[11px] text-zinc-100 font-mono tracking-[0.4em] uppercase font-bold text-shadow-glow">Axis // Private Selection</span>
                     </div>
                     <div className="flex items-center gap-2 opacity-50">
-                        <Timer className="w-3 h-3 text-zinc-400" />
+                        <Sparkles className="w-3 h-3 text-electric-yellow" />
                         <span className="text-[9px] text-zinc-400 font-mono uppercase tracking-widest">
-                            {step === "success" ? "Invitation Prepared" : "Est. 60s Journey"}
+                            {step === "success" ? "Invitation Prepared" : "Exclusive 60s Onboarding"}
                         </span>
                     </div>
                 </div>
@@ -305,7 +313,7 @@ export function WaitlistForm() {
                                 {msg.content}
                             </div>
                             <span className="text-[7px] text-zinc-700 mt-1 uppercase tracking-widest">
-                                {msg.type === "concierge" ? "Concierge" : "Member Selection"} {"//"} {msg.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                                {msg.type === "concierge" ? "Your Concierge" : "Your Selection"} {"//"} {msg.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                             </span>
                         </motion.div>
                     ))}
@@ -339,10 +347,10 @@ export function WaitlistForm() {
                     {step === "corp_triage" && !isTyping && (
                         <motion.div key="corp-triage-inputs" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="grid grid-cols-2 gap-3">
                             <button onClick={() => selectCorpTriage("corporate_new")} className="p-4 border border-zinc-800 hover:border-electric-yellow text-zinc-400 hover:text-white font-mono text-[10px] uppercase tracking-widest flex flex-col items-center gap-2 transition-all">
-                                <Zap className="w-4 h-4" /> Partnership
+                                <Gem className="w-4 h-4" /> Partnership
                             </button>
                             <button onClick={() => selectCorpTriage("corporate_employee")} className="p-4 border border-emerald-500/30 hover:border-emerald-500 text-zinc-400 hover:text-white font-mono text-[10px] uppercase tracking-widest flex flex-col items-center gap-2 transition-all">
-                                <Key className="w-4 h-4" /> Employee
+                                <Crown className="w-4 h-4" /> Member
                             </button>
                         </motion.div>
                     )}
@@ -433,7 +441,7 @@ export function WaitlistForm() {
                                 placeholder="84..."
                             />
                             <button disabled={zipCode.length < 5} className="w-full bg-white text-black font-bold uppercase tracking-widest py-4 text-[10px] disabled:opacity-50 transition-all hover:bg-zinc-200">
-                                Verify My Area
+                                Personalize My Location
                             </button>
                         </motion.form>
                     )}
@@ -456,7 +464,7 @@ export function WaitlistForm() {
                                 placeholder="SECURE PHONE NUMBER"
                             />
                             <button disabled={isPending || !fullName || !phone} className="w-full bg-electric-yellow text-black font-bold uppercase tracking-widest py-4 text-[10px] shadow-[0_10px_40px_rgba(250,204,21,0.4)] transition-all hover:scale-[1.02]">
-                                {isPending ? <Loader2 className="w-4 h-4 animate-spin mx-auto" /> : "Request Exclusive Contact"}
+                                {isPending ? <Loader2 className="w-4 h-4 animate-spin mx-auto" /> : "Request Member Invitation"}
                             </button>
                         </motion.form>
                     )}
@@ -482,11 +490,11 @@ export function WaitlistForm() {
             {/* Terminal Footer */}
             <div className="p-4 bg-zinc-950/90 border-t border-zinc-900 flex justify-between items-center z-10">
                 <div className="flex items-center gap-2">
-                    <Terminal className="w-3 h-3 text-zinc-800" />
-                    <span className="text-[7px] text-zinc-800 font-mono uppercase tracking-[0.4em]">Axis Concierge // Personalized Selection</span>
+                    <Crown className="w-3 h-3 text-zinc-800" />
+                    <span className="text-[7px] text-zinc-800 font-mono uppercase tracking-[0.4em]">Axis // Private Member Concierge</span>
                 </div>
                 <div className="text-[7px] text-zinc-800 font-mono uppercase tracking-widest font-medium">
-                    {"Bespoke Onboarding Active"}
+                    {"Exclusive Membership Selection Active"}
                 </div>
             </div>
         </div>
