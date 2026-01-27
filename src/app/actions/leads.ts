@@ -13,6 +13,8 @@ const leadSchema = z.object({
     notes: z.string().nullable().optional(),
     activity_impacted: z.string().nullable().optional(),
     deployment_priority: z.enum(["ASAP", "This Week", "General Inquiry"]).default("General Inquiry"),
+    lead_type: z.enum(["Private", "Corporate_New", "Corporate_Employee"]).default("Private"),
+    corporate_objective: z.string().nullable().optional(),
 });
 
 export async function submitLead(formData: FormData) {
@@ -35,6 +37,8 @@ export async function submitLead(formData: FormData) {
         corporate_code: formData.get("corporate_code"),
         activity_impacted: formData.get("activity_impacted"),
         deployment_priority: formData.get("deployment_priority") || "General Inquiry",
+        lead_type: formData.get("lead_type") || "Private",
+        corporate_objective: formData.get("corporate_objective"),
     };
 
     const validation = leadSchema.safeParse(rawData);
@@ -53,9 +57,11 @@ export async function submitLead(formData: FormData) {
         };
     }
 
-    // Determine out of area (Client side does this too, but we verify here)
+    // Determine out of area
     const ALLOWED_ZIPS = ["84010", "84011", "84014", "84025", "84037", "84054", "84087", "84015", "84037", "84040", "84041", "84056", "84067", "84075", "84401", "84403", "84404", "84405"];
     const zipCode = (rawData.zip_code as string) || "";
+    // Corporate employees bypass zip check via code validation in UI, 
+    // but we can still flag if needed.
     const isOutOfArea = zipCode && !ALLOWED_ZIPS.includes(zipCode) && !rawData.corporate_code;
 
     // Construct Payload
@@ -70,6 +76,8 @@ export async function submitLead(formData: FormData) {
         zip_code: rawData.zip_code || null,
         corporate_code: rawData.corporate_code || null,
         is_out_of_area: !!isOutOfArea,
+        lead_type: validation.data.lead_type,
+        corporate_objective: validation.data.corporate_objective || null,
         status: "New"
     };
 
@@ -90,12 +98,11 @@ export async function submitLead(formData: FormData) {
 
         revalidatePath("/admin");
 
-        const url = env.NEXT_PUBLIC_SUPABASE_URL || "";
-        const projectIdPrefix = url.includes('.') ? url.split('.')[0].replace('https://', '') : 'unknown';
-
         return {
             success: true,
-            message: `Membership Application received. Priority: ${validation.data.deployment_priority}.`
+            message: validation.data.lead_type === "Corporate_New"
+                ? "Partnership inquiry received. Our executive team will reach out shortly."
+                : "Membership application initiated. Premium access protocols engaged."
         };
     } catch (err: any) {
         console.error("Unexpected submission error:", err);
