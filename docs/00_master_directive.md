@@ -43,7 +43,37 @@ The dashboard must act as the "Morning Routine" screen for the Doctor.
 ### Section B: The Waiting Room (Supabase)
 * **Visual:** A data table of the `leads` table.
 * **Actions:** Status badges ("New", "Contacted"). Simple "Mark as Contacted" button.
+```sql
+create table leads (
+  id uuid primary key default uuid_generate_v4(),
+  created_at timestamp with time zone default now(),
+  
+  -- Contact Info
+  first_name text not null,
+  last_name text not null,
+  email text not null unique,
+  phone text,
+  
+  -- Lead Source & Status
+  source text,
+  interest_level text check (interest_level in ('High', 'Medium', 'Low')) default 'Medium',
+  status text check (status in ('New', 'Contacted', 'Converted', 'Archived')) default 'New',
+  
+  -- Performance & Triage Diagnostics
+  activity_impacted text,
+  deployment_priority text,
+  zip_code text,
+  corporate_code text,
+  is_out_of_area boolean default false,
 
+  -- Lead Classification
+  lead_type text default 'Private',
+  corporate_objective text,
+  
+  -- Context
+  notes text
+);
+```
 ### Section C: The Vibe Check (Supabase)
 * **Visual:** A minimal input form for the Doctor to log a weekly subjective score (1-10) and journal entry.
 
@@ -84,12 +114,13 @@ We maintain two distinct but compatible communication styles.
 ### A. Client POV (Public Facing)
 **Vibe:** Exclusive, Concierge, High-Performance, Membership.
 **Directives:**
-1.  **Avoid** "Patient", "Clinic", "Appointment", "Waiting Room", "Doctor".
-2.  **Use** "Member", "Performance Lab", "Session", "Queue", "Specialist".
+1.  **Avoid** "Patient", "Clinic", "Appointment", "Waiting Room", "Doctor", "Waitlist", "Protocol".
+2.  **Use** "Member", "Performance Lab", "Session", "Specialist", "Membership Privileges", "Concierge Recovery".
 3.  **Phrasing:** 
-    *   Instead of "Book Appointment" -> "Apply for Membership" or "Request Session".
+    *   Instead of "Join Waitlist" -> "Initiate Concierge Membership".
+    *   Instead of "Waitlist Form" -> "Membership Application Wizard".
     *   Instead of "Travel Fee" -> "Concierge Access".
-    *   Instead of "Service Area" -> "Coverage Zone".
+    *   Instead of "Error" -> "Verification Unsuccessful (Concierge Guided Help)".
 
 ### B. Doctor POV (Admin Dashboard)
 **Vibe:** Precision, Command Center, Air Traffic Control.

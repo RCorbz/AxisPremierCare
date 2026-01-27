@@ -31,6 +31,7 @@
 * **Trait:** The "A" is not messy; it is a precision instrument. It looks like a vector diagram or a schematic.
 
 ## 5. UI Components (Tailwind Specs)
-* **Primary Button:** `bg-yellow-400 text-black font-bold uppercase tracking-wide hover:bg-yellow-500 rounded-none`
-* **Card:** `bg-zinc-900 border border-zinc-800 rounded-sm`
-* **Input Field:** `bg-black border border-zinc-700 focus:border-yellow-400 rounded-none text-white`
+* **Primary Button:** `bg-yellow-400 text-black font-bold uppercase tracking-wide hover:bg-yellow-500 rounded-none shadow-[0_4px_14px_0_rgba(250,204,21,0.39)]`
+* **Card:** `bg-zinc-900 border border-zinc-800 rounded-none hover:border-yellow-400/50 transition-all`
+* **Input Field:** `bg-black border border-zinc-800 focus:border-yellow-400 rounded-none text-white font-mono`
+* **Interactive Glow:** `shadow-[0_0_50px_-12px_rgba(250,204,21,0.3)]` (Used for critical alerts or successful transitions)

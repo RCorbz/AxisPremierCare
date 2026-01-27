@@ -26,6 +26,17 @@ create table public.leads (
   interest_level text check (interest_level in ('High', 'Medium', 'Low')) default 'Medium',
   status text check (status in ('New', 'Contacted', 'Converted', 'Archived')) default 'New',
   
+  -- Performance & Triage Diagnostics
+  activity_impacted text,
+  deployment_priority text,
+  zip_code text,
+  corporate_code text,
+  is_out_of_area boolean default false,
+
+  -- Lead Classification
+  lead_type text default 'Private',
+  corporate_objective text,
+
   -- Context
   notes text
 );
