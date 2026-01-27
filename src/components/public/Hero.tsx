@@ -13,14 +13,14 @@ export function Hero() {
                     Axis Performance Care
                 </span>
                 <h1 className="text-5xl md:text-7xl lg:text-8xl text-white font-mono font-bold uppercase tracking-tighter leading-[0.9] mb-8 animate-in fade-in slide-in-from-bottom-8 duration-700 delay-100">
-                    High-Performance <br />
-                    <span className="text-zinc-600">Recovery.</span> <br />
-                    Delivered.
+                    Elite <br />
+                    <span className="text-zinc-600">Performance.</span> <br />
+                    Bespoke Care.
                 </h1>
                 <p className="text-zinc-400 text-lg md:text-xl max-w-xl leading-relaxed mb-12 animate-in fade-in slide-in-from-bottom-8 duration-700 delay-200">
-                    Skip the waiting room. Dr. Hanson brings hospital-grade structural care
-                    to your living room in Bountiful. Acute pain & mobility relief for
-                    high-performers.
+                    Your concierge for high-performance living. Dr. Hanson brings
+                    private structural optimization to your home in Bountiful.
+                    Acute recovery & elite mobility for the world&apos;s highest producers.
                 </p>
 
                 <div className="flex flex-col md:flex-row gap-6 items-start animate-in fade-in slide-in-from-bottom-8 duration-700 delay-300">
