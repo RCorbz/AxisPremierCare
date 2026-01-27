@@ -56,9 +56,7 @@ export function WaitlistForm() {
     const currentProgress = progressMap[step];
 
     const chatEndRef = useRef<HTMLDivElement>(null);
-    const nameRef = useRef<HTMLInputElement>(null);
     const codeRef = useRef<HTMLInputElement>(null);
-    const zipRef = useRef<HTMLInputElement>(null);
 
     const scrollToBottom = () => {
         chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -81,9 +79,9 @@ export function WaitlistForm() {
                 setIsLoadingAvailability(false);
             }
 
-            await addConciergeMessage("Initiating Axis OS Concierge Protocol...");
-            await addConciergeMessage("Welcome. I am your Digital Concierge. I will guide you through the Membership Registry in less than 60 seconds.");
-            await addConciergeMessage("To begin, please identify your mission profile:");
+            await addConciergeMessage("Welcome. Your curated Axis experience begins now.");
+            await addConciergeMessage("I am your Concierge. I will prepare your personalized membership dashboard in less than 60 seconds.");
+            await addConciergeMessage("To provide the most exquisite care, how may we best serve you today?");
         };
         sequence();
     }, []);
@@ -116,26 +114,26 @@ export function WaitlistForm() {
 
         if (id === "private") {
             setMode("private");
-            await addConciergeMessage(<>Analyzing sector bandwidth for <strong>Private Experience</strong>...</>);
-            await addConciergeMessage("Understood. How can Axis optimize your performance profile?");
+            await addConciergeMessage(<>Preparing our premium availability for <strong>Private Access</strong>...</>);
+            await addConciergeMessage("Wonderful. How can Axis optimize your performance and well-being?");
             setStep("objective");
         } else {
             setStep("corp_triage");
-            await addConciergeMessage("Corporate Service portal active. Please establish relationship context:");
+            await addConciergeMessage("Welcome. It is a pleasure to serve our corporate partners. Please share your current needs:");
         }
     };
 
     const selectCorpTriage = async (m: "corporate_new" | "corporate_employee") => {
-        const label = m === "corporate_new" ? "New Partnership Inquiry" : "Employee Access";
+        const label = m === "corporate_new" ? "New Partnership Inquiry" : "Exclusive Member Access";
         addUserMessage(label);
         setMode(m);
 
         if (m === "corporate_new") {
-            await addConciergeMessage("Initializing Partnership Qualification. Please identify your relationship scale:");
+            await addConciergeMessage("We are delighted you are considering a partnership. To tailor our proposal, what is your organization's scale?");
             setStep("corp_qualify");
         } else {
-            await addConciergeMessage("Acknowledged. Secure access required.");
-            await addConciergeMessage("Please confirm your corporate access code below:");
+            await addConciergeMessage("We had a feeling you were part of the club. Exclusive access awaits.");
+            await addConciergeMessage("Please enter your corporate access code to unlock your personalized benefits:");
             setStep("corp_verify");
         }
     };
@@ -146,14 +144,14 @@ export function WaitlistForm() {
 
         if (code === "AXIS2026") {
             setVerifiedEntity("Axis Premier Partner");
-            addUserMessage(`CODE VERIFIED: ${code}`);
+            addUserMessage(`ACCESS CONFIRMED: ${code}`);
             await addConciergeMessage(
-                <div className="flex items-center gap-2 text-emerald-500">
+                <div className="flex items-center gap-2 text-emerald-500 font-mono">
                     <ShieldCheck className="w-4 h-4" />
                     <span>Welcome home, member of <strong>Axis Premier Partner</strong>.</span>
                 </div>
             );
-            await addConciergeMessage("Just a few quick questions before we get you scheduled. What is your primary focus?");
+            await addConciergeMessage("Thanks for helping us zero in on your specific needs. What is your primary focus for today's session?");
             setStep("objective");
             setResult(null);
         } else {
@@ -167,23 +165,23 @@ export function WaitlistForm() {
 
     const selectHeadcount = async (h: string) => {
         setHeadcount(h);
-        addUserMessage(`Scale: ${h} Employees`);
-        await addConciergeMessage("Scale logged. What is your primary partnership objective?");
-        setStep("objective"); // Re-using objective for corp too
+        addUserMessage(`${h} Visionaries`);
+        await addConciergeMessage("Thank you. What is your primary goal for this partnership?");
+        setStep("objective");
     };
 
     const selectObjective = async (opt: string) => {
         setObjective(opt);
         addUserMessage(opt);
-        await addConciergeMessage("Objective locked. What outcome do you desire from your initial protocol session?");
+        await addConciergeMessage("Perfect choice. What specific outcome can we help you achieve during your first visit?");
         setStep("outcome");
     };
 
     const selectOutcome = async (opt: string) => {
         setOutcome(opt);
         addUserMessage(opt);
-        await addConciergeMessage("Desired outcome identified. We now need to verify logistics.");
-        await addConciergeMessage("Please provide the Zip Code for your deployment sector:");
+        await addConciergeMessage("Excellent. To ensure we have everything ready for your arrival, please tell us where you are located.");
+        await addConciergeMessage("Your Zip Code allows us to curate the best experience for your neighborhood:");
         setStep("location");
     };
 
@@ -201,16 +199,16 @@ export function WaitlistForm() {
         }
         setIsOutOfRange(outOfRangeLocal);
 
-        await addConciergeMessage("Logistic verification complete.");
+        await addConciergeMessage("Wonderful. We've verified your location.");
         if (outOfRangeLocal) {
             await addConciergeMessage(
-                <div className="flex items-center gap-2 text-yellow-500">
-                    <AlertTriangle className="w-4 h-4" />
-                    <span>External Sector detected. Extended logistics review required.</span>
+                <div className="flex items-center gap-2 text-yellow-500 font-mono">
+                    <Info className="w-4 h-4" />
+                    <span>You are just outside our primary service area, but we would love to review your application for a bespoke arrangement.</span>
                 </div>
             );
         }
-        await addConciergeMessage("Registry finalizing. Please provide secure contact intelligence:");
+        await addConciergeMessage("Lastly, we simply need a name and number to finalize your invitation:");
         setStep("contact");
     };
 
@@ -238,7 +236,7 @@ export function WaitlistForm() {
             setResult(response);
             if (response.success) {
                 addUserMessage(`${fullName} | ${phone}`);
-                await addConciergeMessage("Protocol Initiated. Secure connection established.");
+                await addConciergeMessage("Your luxury experience is being curated. Our concierge will be in touch with you shortly.");
                 goToStep("success");
             }
         } catch (err: unknown) {
@@ -252,32 +250,34 @@ export function WaitlistForm() {
     return (
         <div className="max-w-2xl mx-auto h-[700px] flex flex-col bg-black border border-zinc-900 shadow-2xl relative overflow-hidden">
             {/* Header / Progress */}
-            <div className="p-4 border-b border-zinc-900 bg-zinc-950/50 flex flex-col gap-3 z-10">
+            <div className="p-5 border-b border-zinc-900 bg-zinc-950/80 backdrop-blur-xl flex flex-col gap-4 z-10">
                 <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                        <div className="w-2 h-2 rounded-full bg-electric-yellow animate-pulse shadow-[0_0_8px_rgba(250,204,21,0.5)]" />
-                        <span className="text-[10px] text-white font-mono tracking-[0.3em] uppercase">Axis OS // Concierge v1.0</span>
+                        <div className="w-1.5 h-1.5 rounded-full bg-electric-yellow shadow-[0_0_12px_rgba(250,204,21,0.8)]" />
+                        <span className="text-[11px] text-zinc-100 font-mono tracking-[0.4em] uppercase font-bold">Axis Concierge</span>
                     </div>
-                    <div className="flex items-center gap-2">
-                        <Timer className="w-3 h-3 text-zinc-600" />
-                        <span className="text-[8px] text-zinc-600 font-mono uppercase tracking-widest">
-                            {step === "success" ? "Registry Complete" : "Est. 60s To Completion"}
+                    <div className="flex items-center gap-2 opacity-50">
+                        <Timer className="w-3 h-3 text-zinc-400" />
+                        <span className="text-[9px] text-zinc-400 font-mono uppercase tracking-widest">
+                            {step === "success" ? "Invitation Prepared" : "Est. 60s Journey"}
                         </span>
                     </div>
                 </div>
 
-                {/* Tactical Progress Bar */}
-                <div className="space-y-1.5">
-                    <div className="flex justify-between items-center px-0.5">
-                        <span className="text-[6px] text-zinc-600 font-mono uppercase tracking-widest">System Integrity // {step.replace('_', ' ')}</span>
-                        <span className="text-[6px] text-electric-yellow font-mono uppercase tracking-widest">{currentProgress}%</span>
+                {/* Prominent Progress Bar */}
+                <div className="space-y-2">
+                    <div className="flex justify-between items-end px-0.5">
+                        <span className="text-[8px] text-zinc-400 font-mono uppercase tracking-[0.2em] font-medium italic">
+                            {step === "success" ? "Selection Finalized" : `Curating Journey // ${step.replace('_', ' ')}`}
+                        </span>
+                        <span className="text-xs text-electric-yellow font-mono font-bold">{currentProgress}%</span>
                     </div>
-                    <div className="h-[2px] w-full bg-zinc-900 overflow-hidden relative">
+                    <div className="h-2 w-full bg-zinc-900/50 rounded-full overflow-hidden border border-white/5">
                         <motion.div
-                            className="absolute top-0 left-0 h-full bg-electric-yellow shadow-[0_0_10px_rgba(250,204,21,0.4)]"
+                            className="h-full bg-gradient-to-r from-electric-yellow/80 to-electric-yellow shadow-[0_0_15px_rgba(250,204,21,0.5)]"
                             initial={{ width: "10%" }}
                             animate={{ width: `${currentProgress}%` }}
-                            transition={{ duration: 0.5, ease: "circOut" }}
+                            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                         />
                     </div>
                 </div>
@@ -305,7 +305,7 @@ export function WaitlistForm() {
                                 {msg.content}
                             </div>
                             <span className="text-[7px] text-zinc-700 mt-1 uppercase tracking-widest">
-                                {msg.type === "concierge" ? "Digital Concierge" : "Member Identity"} {"//"} {msg.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                                {msg.type === "concierge" ? "Concierge" : "Member Selection"} {"//"} {msg.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                             </span>
                         </motion.div>
                     ))}
@@ -432,8 +432,8 @@ export function WaitlistForm() {
                                 className="w-full bg-black border border-zinc-800 p-4 text-white font-mono text-center text-2xl tracking-[0.3em] focus:border-electric-yellow focus:outline-none"
                                 placeholder="84..."
                             />
-                            <button disabled={zipCode.length < 5} className="w-full bg-zinc-100 text-black font-bold uppercase tracking-widest py-4 text-[10px] disabled:opacity-50">
-                                Validate Sector
+                            <button disabled={zipCode.length < 5} className="w-full bg-white text-black font-bold uppercase tracking-widest py-4 text-[10px] disabled:opacity-50 transition-all hover:bg-zinc-200">
+                                Verify My Area
                             </button>
                         </motion.form>
                     )}
@@ -445,30 +445,34 @@ export function WaitlistForm() {
                                 required
                                 value={fullName}
                                 onChange={(e) => setFullName(e.target.value)}
-                                className="w-full bg-black border border-zinc-800 p-3 text-white font-mono text-xs focus:border-electric-yellow focus:outline-none"
-                                placeholder="FULL NAME"
+                                className="w-full bg-zinc-900/50 border border-zinc-800 p-3 text-white font-mono text-xs focus:border-electric-yellow focus:outline-none placeholder:text-zinc-600"
+                                placeholder="YOUR FULL NAME"
                             />
                             <input
                                 required
                                 value={phone}
                                 onChange={(e) => setPhone(e.target.value)}
-                                className="w-full bg-black border border-zinc-800 p-3 text-white font-mono text-xs focus:border-electric-yellow focus:outline-none"
-                                placeholder="SECURE PHONE (SMS)"
+                                className="w-full bg-zinc-900/50 border border-zinc-800 p-3 text-white font-mono text-xs focus:border-electric-yellow focus:outline-none placeholder:text-zinc-600"
+                                placeholder="SECURE PHONE NUMBER"
                             />
-                            <button disabled={isPending || !fullName || !phone} className="w-full bg-electric-yellow text-black font-bold uppercase tracking-widest py-4 text-[10px] shadow-[0_10px_30px_rgba(250,204,21,0.3)]">
-                                {isPending ? <Loader2 className="w-4 h-4 animate-spin mx-auto" /> : "Initiate Protocol"}
+                            <button disabled={isPending || !fullName || !phone} className="w-full bg-electric-yellow text-black font-bold uppercase tracking-widest py-4 text-[10px] shadow-[0_10px_40px_rgba(250,204,21,0.4)] transition-all hover:scale-[1.02]">
+                                {isPending ? <Loader2 className="w-4 h-4 animate-spin mx-auto" /> : "Request Exclusive Contact"}
                             </button>
                         </motion.form>
                     )}
 
                     {/* Success Message UI refinement if needed or keep existing */}
                     {step === "success" && (
-                        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-center p-4">
-                            <div className="flex items-center justify-center gap-2 text-electric-yellow font-mono text-[10px] uppercase tracking-widest">
-                                <ShieldCheck className="w-4 h-4" /> Registry Locked
+                        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-center p-6 space-y-4">
+                            <div className="flex flex-col items-center gap-3 text-electric-yellow font-mono text-xs uppercase tracking-[0.3em] font-bold">
+                                <Sparkles className="w-6 h-6 animate-pulse" />
+                                <span>Experience Reserved</span>
                             </div>
-                            <button onClick={() => window.location.reload()} className="mt-4 text-[8px] text-zinc-600 underline font-mono uppercase tracking-widest">
-                                Restart Terminal
+                            <p className="text-zinc-500 font-mono text-[9px] uppercase tracking-widest leading-relaxed">
+                                Our bespoke team has been notified of your interest. <br /> Expect a personalized connection shortly.
+                            </p>
+                            <button onClick={() => window.location.reload()} className="mt-8 text-[8px] text-zinc-700 underline font-mono uppercase tracking-widest hover:text-white transition-colors">
+                                Reset Experience
                             </button>
                         </motion.div>
                     )}
@@ -476,13 +480,13 @@ export function WaitlistForm() {
             </div>
 
             {/* Terminal Footer */}
-            <div className="p-3 bg-zinc-950 border-t border-zinc-900 flex justify-between items-center z-10">
+            <div className="p-4 bg-zinc-950/90 border-t border-zinc-900 flex justify-between items-center z-10">
                 <div className="flex items-center gap-2">
                     <Terminal className="w-3 h-3 text-zinc-800" />
-                    <span className="text-[6px] text-zinc-800 font-mono uppercase tracking-[0.3em]">Axis Command & Control // Secure Shell</span>
+                    <span className="text-[7px] text-zinc-800 font-mono uppercase tracking-[0.4em]">Axis Concierge // Personalized Selection</span>
                 </div>
-                <div className="text-[6px] text-zinc-800 font-mono uppercase tracking-widest">
-                    {"AES-256 BIT ENCRYPTION"}
+                <div className="text-[7px] text-zinc-800 font-mono uppercase tracking-widest font-medium">
+                    {"Bespoke Onboarding Active"}
                 </div>
             </div>
         </div>
