@@ -7,7 +7,7 @@ import { revalidatePath } from "next/cache";
 
 const leadSchema = z.object({
     full_name: z.string().min(1, "Name is required"),
-    email: z.string().email("Invalid email"),
+    email: z.string().email("Invalid email").optional().or(z.literal("")),
     phone: z.string().min(1, "Phone is required"),
     interest_level: z.enum(["High", "Medium", "Low"]).default("Medium"),
     notes: z.string().nullable().optional(),
