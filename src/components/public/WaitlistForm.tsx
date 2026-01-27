@@ -87,9 +87,9 @@ export function WaitlistForm() {
                 setIsLoadingAvailability(false);
             }
 
-            await addConciergeMessage("Welcome. Your curated Axis experience begins now.");
-            await addConciergeMessage("I am your Concierge. I will prepare your personalized membership dashboard in less than 60 seconds.");
-            await addConciergeMessage("To provide the most exquisite care, how may we best serve you today?");
+            await addConciergeMessage("Welcome to Axis Premier Care. Your journey to exceptional well-being begins here.");
+            await addConciergeMessage("I am your personal Concierge. I will prepare your exclusive membership profile in less than 60 seconds.");
+            await addConciergeMessage("To provide you with the most curated experience, how may we best serve you today?");
         };
         sequence();
     }, []);

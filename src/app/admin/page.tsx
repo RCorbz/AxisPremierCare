@@ -31,7 +31,7 @@ export default async function AdminDashboard() {
                         Morning Briefing
                     </h1>
                     <p className="text-zinc-500 font-mono text-sm tracking-widest uppercase">
-                        Dr. Hanson // Bountiful, UT
+                        Dr. Corbaley // Bountiful, UT
                     </p>
                 </div>
                 <div className="flex items-center gap-2">

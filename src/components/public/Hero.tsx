@@ -10,17 +10,16 @@ export function Hero() {
 
             <div className="max-w-4xl z-10">
                 <span className="text-electric-yellow font-mono text-sm uppercase tracking-[0.2em] mb-4 block animate-in fade-in slide-in-from-bottom-4 duration-700">
-                    Axis Performance Care
+                    Axis Premier Care
                 </span>
                 <h1 className="text-5xl md:text-7xl lg:text-8xl text-white font-mono font-bold uppercase tracking-tighter leading-[0.9] mb-8 animate-in fade-in slide-in-from-bottom-8 duration-700 delay-100">
-                    Elite <br />
-                    <span className="text-zinc-600">Performance.</span> <br />
-                    Bespoke Care.
+                    Exclusive. <br />
+                    <span className="text-zinc-600">Members Only Care.</span> <br />
+                    Delivered.
                 </h1>
                 <p className="text-zinc-400 text-lg md:text-xl max-w-xl leading-relaxed mb-12 animate-in fade-in slide-in-from-bottom-8 duration-700 delay-200">
-                    Your concierge for high-performance living. Dr. Hanson brings
-                    private structural optimization to your home in Bountiful.
-                    Acute recovery & elite mobility for the world&apos;s highest producers.
+                    Dr. John Corbaley delivers life changing restoration and personalized
+                    expansive mobility to revitalize your domain of productivity and meaning.
                 </p>
 
                 <div className="flex flex-col md:flex-row gap-6 items-start animate-in fade-in slide-in-from-bottom-8 duration-700 delay-300">
