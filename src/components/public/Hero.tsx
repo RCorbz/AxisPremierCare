@@ -1,9 +1,13 @@
 "use client";
 
-import { ArrowRight } from "lucide-react";
-import Image from "next/image";
+import { ArrowRight, Sparkles } from "lucide-react";
 
-export function Hero() {
+interface HeroProps {
+    onApply: () => void;
+    isRevealed: boolean;
+}
+
+export function Hero({ onApply, isRevealed }: HeroProps) {
     return (
         <section className="relative min-h-[80vh] flex flex-col justify-center px-6 md:px-12 border-b border-zinc-900 bg-carbon-black overflow-hidden">
             {/* Background Texture Integration could go here */}
@@ -24,11 +28,12 @@ export function Hero() {
 
                 <div className="flex flex-col md:flex-row gap-6 items-start animate-in fade-in slide-in-from-bottom-8 duration-700 delay-300">
                     <button
-                        onClick={() => document.getElementById('waitlist')?.scrollIntoView({ behavior: 'smooth' })}
-                        className="bg-electric-yellow text-black font-bold uppercase tracking-widest px-8 py-4 hover:bg-yellow-400 transition-colors flex items-center gap-2 group text-sm"
+                        onClick={onApply}
+                        disabled={isRevealed}
+                        className="bg-electric-yellow text-black font-bold uppercase tracking-widest px-8 py-4 hover:bg-yellow-400 disabled:opacity-50 transition-all flex items-center gap-2 group text-sm shadow-[0_0_20px_rgba(250,204,21,0.3)]"
                     >
-                        Apply for Membership
-                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                        {isRevealed ? "Application Unlocked" : "Apply for Membership"}
+                        {isRevealed ? <Sparkles className="w-4 h-4" /> : <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />}
                     </button>
 
                     <div className="flex items-center gap-3 py-4">
