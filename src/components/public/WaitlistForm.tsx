@@ -132,19 +132,22 @@ export function WaitlistForm() {
 
         if (code === "AXIS2026") {
             setVerifiedEntity("Axis Premier Partner");
-            addUserMessage(`Code Verified: ${code}`);
+            addUserMessage(`CODE VERIFIED: ${code}`);
             await addConciergeMessage(
                 <div className="flex items-center gap-2 text-emerald-500">
                     <ShieldCheck className="w-4 h-4" />
-                    <span>Welcome home, employee of <strong>Axis Premier Partner</strong>.</span>
+                    <span>Welcome home, member of <strong>Axis Premier Partner</strong>.</span>
                 </div>
             );
             await addConciergeMessage("Just a few quick questions before we get you scheduled. What is your primary focus?");
             setStep("objective");
             setResult(null);
         } else {
-            setAccessCode("");
-            setResult({ success: false, message: "Authentication failed. Error 401: Invalid Code." });
+            setAccessCode(""); // Auto-reset for better UX
+            setResult({
+                success: false,
+                message: "We couldn't confirm that code. Please try again or contact Axis Concierge directly for priority assistance."
+            });
         }
     };
 
@@ -321,9 +324,22 @@ export function WaitlistForm() {
                                 className="w-full bg-black border border-zinc-800 p-4 text-white font-mono text-center text-lg focus:border-emerald-500 focus:outline-none transition-colors"
                                 placeholder="CONFIRM ACCESS CODE"
                             />
-                            {result?.message && <p className="text-[8px] text-yellow-500 font-mono uppercase text-center">{result.message}</p>}
-                            <button className="w-full bg-emerald-500 text-black font-bold uppercase tracking-widest py-4 text-[10px]">
-                                Authenticate Profile
+                            {result?.message && !result.success && (
+                                <div className="p-4 bg-yellow-500/5 border border-yellow-500/10 text-center space-y-2 animate-in fade-in zoom-in-95">
+                                    <p className="text-yellow-500 text-[8px] font-mono uppercase tracking-widest leading-relaxed">
+                                        {result.message}
+                                    </p>
+                                    <button
+                                        type="button"
+                                        onClick={() => window.location.href = 'mailto:concierge@axispremiercare.com'}
+                                        className="text-[7px] text-zinc-600 underline hover:text-white font-mono uppercase tracking-[0.2em]"
+                                    >
+                                        Contact Axis Support
+                                    </button>
+                                </div>
+                            )}
+                            <button className="w-full bg-emerald-500 text-black font-bold uppercase tracking-widest py-4 text-[10px] shadow-[0_10px_30px_-10px_rgba(16,185,129,0.3)]">
+                                Confirm Access Code
                             </button>
                         </motion.form>
                     )}
