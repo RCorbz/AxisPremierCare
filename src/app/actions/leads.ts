@@ -112,3 +112,54 @@ export async function submitLead(formData: FormData) {
         };
     }
 }
+export async function getAvailabilityStatus() {
+    const supabase = await createClient();
+
+    try {
+        const { data: settings, error: settingsError } = await supabase
+            .from("doc_settings")
+            .select("*")
+            .single();
+
+        if (settingsError) throw settingsError;
+
+        const s = settings as {
+            private_capacity_limit: number;
+            corporate_capacity_limit: number;
+            service_zip_whitelist: string[];
+            service_radius_miles: number;
+        };
+
+        const { data: leads, error: leadsError } = await supabase
+            .from("leads")
+            .select("lead_type, membership_status");
+
+        if (leadsError) throw leadsError;
+
+        const typedLeads = (leads as { lead_type: string | null; membership_status: string | null }[]) || [];
+
+        const activePrivate = typedLeads.filter(l => l.lead_type === "Private" && l.membership_status === "Active").length;
+        const activeCorporate = typedLeads.filter(l => l.lead_type === "Corporate_New" && l.membership_status === "Active").length;
+
+        return {
+            private: {
+                current: activePrivate,
+                limit: s.private_capacity_limit,
+                available: activePrivate < s.private_capacity_limit,
+                whitelist: s.service_zip_whitelist
+            },
+            corporate: {
+                current: activeCorporate,
+                limit: s.corporate_capacity_limit,
+                available: activeCorporate < s.corporate_capacity_limit,
+                radius: s.service_radius_miles
+            }
+        };
+    } catch (err) {
+        console.error("Availability Check Failed:", err);
+        return {
+            private: { current: 0, limit: 50, available: true, whitelist: ["84010", "84011", "84014"] },
+            corporate: { current: 0, limit: 4, available: true, radius: 60 }
+        };
+    }
+}
