@@ -7,10 +7,16 @@ The application uses a **60-Second Membership** strategy designed for mobile-fir
 graph TD
     Start((Visitor Entry)) --> Step1UI[Step 1: Identity]
     
-    Step1UI -->|Private Experience| Step2[Step 2: Objective]
-    Step1UI -->|Corporate Service| Step2
+    Step1UI -->|Private Experience| Step2Priv[Step 2: Objective]
     
-    Step2 -->|Select Goal| Step3[Step 3: Outcome]
+    Step1UI -->|Corporate Service| CorpBranch{Triage}
+    CorpBranch -->|New Partnership| Step2CorpNew[Step 2: Partnership Goals]
+    CorpBranch -->|Employee Access| Step2CorpEmp[Step 2: Verify Access Code]
+    
+    Step2CorpEmp -->|Verified| Step2Priv
+    Step2CorpNew -->|Qualify| Step2Priv
+    
+    Step2Priv -->|Select Goal| Step3[Step 3: Outcome]
     Step3 -->|Select Target| Step4[Step 4: Location]
     
     Step4 -->|Zip Check| Step5[Step 5: Intelligence]
@@ -22,9 +28,10 @@ graph TD
 ## 2. Decision Logic & Intelligence
 
 ### Step 1: Identity (Triage)
-- **Visuals**: Real-time capacity badges.
-- **Intelligence**: Queries `doc_settings` vs. `leads` table to identify if the doctor is at capacity (Private: 50, Corporate: 4).
-- **Branching**: Sets the context for the location check in Step 4.
+- **Private**: Direct path to personalized performance discovery.
+- **Corporate**: Splits into two distinct streams:
+    - **Corporate New**: Asks for partnership objectives (Onsite demos, Executive strategy) and headcount.
+    - **Employee Access**: Requires a secure access code before proceeding.
 
 ### Step 2 & 3: Objective & Outcome
 - **Strategy**: 100% button-driven. Captures high-signal clinical intent without requiring the user to type.
