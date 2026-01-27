@@ -41,6 +41,20 @@ export function WaitlistForm() {
     const [verifiedEntity, setVerifiedEntity] = useState<string | null>(null);
     const [isOutOfRange, setIsOutOfRange] = useState(false);
 
+    // Progress Logic
+    const progressMap: Record<Step, number> = {
+        identity: 10,
+        corp_triage: 25,
+        corp_verify: 30,
+        corp_qualify: 30,
+        objective: 50,
+        outcome: 70,
+        location: 85,
+        contact: 95,
+        success: 100
+    };
+    const currentProgress = progressMap[step];
+
     const chatEndRef = useRef<HTMLDivElement>(null);
     const nameRef = useRef<HTMLInputElement>(null);
     const codeRef = useRef<HTMLInputElement>(null);
@@ -238,14 +252,34 @@ export function WaitlistForm() {
     return (
         <div className="max-w-2xl mx-auto h-[700px] flex flex-col bg-black border border-zinc-900 shadow-2xl relative overflow-hidden">
             {/* Header / Progress */}
-            <div className="p-4 border-b border-zinc-900 bg-zinc-950/50 flex items-center justify-between z-10">
-                <div className="flex items-center gap-3">
-                    <div className="w-2 h-2 rounded-full bg-electric-yellow animate-pulse shadow-[0_0_8px_rgba(250,204,21,0.5)]" />
-                    <span className="text-[10px] text-white font-mono tracking-[0.3em] uppercase">Axis OS // Concierge v1.0</span>
+            <div className="p-4 border-b border-zinc-900 bg-zinc-950/50 flex flex-col gap-3 z-10">
+                <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                        <div className="w-2 h-2 rounded-full bg-electric-yellow animate-pulse shadow-[0_0_8px_rgba(250,204,21,0.5)]" />
+                        <span className="text-[10px] text-white font-mono tracking-[0.3em] uppercase">Axis OS // Concierge v1.0</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                        <Timer className="w-3 h-3 text-zinc-600" />
+                        <span className="text-[8px] text-zinc-600 font-mono uppercase tracking-widest">
+                            {step === "success" ? "Registry Complete" : "Est. 60s To Completion"}
+                        </span>
+                    </div>
                 </div>
-                <div className="flex items-center gap-2">
-                    <Timer className="w-3 h-3 text-zinc-600" />
-                    <span className="text-[8px] text-zinc-600 font-mono uppercase tracking-widest">Est. 60s To Completion</span>
+
+                {/* Tactical Progress Bar */}
+                <div className="space-y-1.5">
+                    <div className="flex justify-between items-center px-0.5">
+                        <span className="text-[6px] text-zinc-600 font-mono uppercase tracking-widest">System Integrity // {step.replace('_', ' ')}</span>
+                        <span className="text-[6px] text-electric-yellow font-mono uppercase tracking-widest">{currentProgress}%</span>
+                    </div>
+                    <div className="h-[2px] w-full bg-zinc-900 overflow-hidden relative">
+                        <motion.div
+                            className="absolute top-0 left-0 h-full bg-electric-yellow shadow-[0_0_10px_rgba(250,204,21,0.4)]"
+                            initial={{ width: "10%" }}
+                            animate={{ width: `${currentProgress}%` }}
+                            transition={{ duration: 0.5, ease: "circOut" }}
+                        />
+                    </div>
                 </div>
             </div>
 
