@@ -7,21 +7,21 @@ The application uses a **60-Second Membership** strategy designed for mobile-fir
 graph TD
     Start((Visitor Entry)) --> Step1[Step 1: Identity]
     
-    Step1 -->|Private Experience| Step2Priv[Step 2: Objective]
+    Step1 -->|Private Experience| Step2Priv[Step 2: Intent]
     
     Step1 -->|Corporate Service| CorpBranch{Triage}
-    CorpBranch -->|New Partnership| Step2CorpNew[Step 2: Partnership Goals]
-    CorpBranch -->|Employee Access| Step2CorpEmp[Step 2: Verify Access Code]
+    CorpBranch -->|New Partnership| Step2CorpNew[Step 2: Partnership Scale]
+    CorpBranch -->|Employee Access| Step2CorpEmp[Step 2: Verify Access]
     
     Step2CorpEmp -->|Verified| Step2Priv
-    Step2CorpNew -->|Qualify| Step2Priv
+    Step2CorpNew -->|Quantified| Step2Priv
     
-    Step2Priv -->|Select Goal| Step3[Step 3: Outcome]
-    Step3 -->|Select Target| Step4[Step 4: Location]
-    Step4 -->|Zip Check| Step5[Step 5: Intelligence]
+    Step2Priv -->|Select Objective| Step3[Step 3: Outcome]
+    Step3 -->|Select Result| Step4[Step 4: Location]
+    Step4 -->|Zip Check| Step5[Step 5: Contact]
     
-    Step5 -->|Name + Phone| Submit[Submit Lead]
-    Submit --> Success((Access Granted))
+    Step5 -->|Name + Phone| Submit[Initiate Protocol]
+    Submit --> Success((Registry Locked))
 ```
 
 ## 2. Decision Logic & Intelligence
@@ -29,12 +29,12 @@ graph TD
 ### Step 1: Identity (Triage)
 - **Private**: Direct path to personalized performance discovery.
 - **Corporate**: Splits into two distinct streams:
-    - **Corporate New**: Asks for partnership objectives (Onsite demos, Executive strategy) and headcount.
-    - **Employee Access**: Requires a secure access code before proceeding.
+    - **Corporate New**: Asks for partnership scale (Headcount) before identifying intent.
+    - **Employee Access**: Requires a secure access code (e.g., `AXIS2026`) before proceeding.
 
-### Step 2 & 3: Objective & Outcome
+### Step 2 & 3: Intent & Outcome
 - **Strategy**: 100% button-driven. Captures high-signal clinical intent without requiring the user to type.
-- **"Other" Path**: Opens a minimal text input only if specific categories don't match.
+- **Shortcut Mode**: Verified employees receive a warmer, expedited triage tone.
 
 ### Step 4: Location Intelligence
 - **Private Path**: Checks input against a dynamic whitelist (e.g., 84010, 84011).
