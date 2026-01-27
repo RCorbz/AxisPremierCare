@@ -275,30 +275,42 @@ export function WaitlistForm() {
                 {/* Step Corp: Verify Code */}
                 {step === "corp_verify" && (
                     <motion.div key="corp_verify" initial="initial" animate="animate" exit="exit" variants={variants} className="space-y-6">
-                        <div className="mb-10">
-                            <h2 className="text-2xl text-white font-mono uppercase tracking-[0.2em] mb-2">Verify Access</h2>
-                            <p className="text-zinc-500 font-mono text-[10px] uppercase tracking-widest">Input your unique corporate membership code</p>
+                        <div className="mb-10 text-center">
+                            <Key className="w-8 h-8 text-emerald-500 mx-auto mb-4" />
+                            <h2 className="text-2xl text-white font-mono uppercase tracking-[0.2em] mb-2">Welcome Home</h2>
+                            <p className="text-zinc-500 font-mono text-[10px] uppercase tracking-widest">Input your corporate access code to unlock your benefits</p>
                         </div>
                         <form onSubmit={handleVerifyCode} className="space-y-6">
                             <div className="space-y-2">
-                                <label className="text-[10px] uppercase tracking-widest text-zinc-500 font-mono">Access Code</label>
+                                <label className="text-[10px] uppercase tracking-widest text-zinc-500 font-mono text-center block w-full">Access Code</label>
                                 <input
                                     ref={codeRef}
                                     required
                                     value={accessCode}
                                     onChange={(e) => setAccessCode(e.target.value)}
-                                    className="w-full bg-black border border-zinc-800 p-5 text-white focus:border-emerald-500 focus:outline-none font-mono text-center text-xl tracking-[0.3em] uppercase"
+                                    className="w-full bg-black border border-zinc-800 p-5 text-white focus:border-emerald-500 focus:outline-none font-mono text-center text-xl tracking-[0.3em] uppercase transition-colors"
                                     placeholder="••••••••"
                                 />
                             </div>
-                            {result?.message && (
-                                <p className="text-yellow-500 text-[9px] font-mono uppercase text-center">{result.message}</p>
+
+                            {result?.message && !result.success && (
+                                <div className="p-4 bg-yellow-500/5 border border-yellow-500/10 text-center space-y-2 animate-in fade-in zoom-in-95">
+                                    <p className="text-yellow-500 text-[9px] font-mono uppercase tracking-widest">{result.message}</p>
+                                    <button
+                                        type="button"
+                                        onClick={() => window.location.href = 'mailto:concierge@axispremiercare.com'}
+                                        className="text-[8px] text-zinc-600 underline hover:text-white font-mono uppercase tracking-[0.2em]"
+                                    >
+                                        Contact Axis Support
+                                    </button>
+                                </div>
                             )}
-                            <button className="w-full bg-emerald-500 text-black font-bold uppercase tracking-widest py-5 hover:bg-emerald-400 transition-all">
-                                Authenticate
+
+                            <button className="w-full bg-emerald-500 text-black font-bold uppercase tracking-widest py-5 hover:bg-emerald-400 transition-all shadow-[0_10px_30px_-10px_rgba(16,185,129,0.3)]">
+                                Confirm Access Code
                             </button>
                         </form>
-                        <button onClick={() => goToStep("corp_triage")} className="text-[10px] text-zinc-600 uppercase tracking-widest flex items-center gap-2 hover:text-white mt-4">
+                        <button onClick={() => goToStep("corp_triage")} className="text-[10px] text-zinc-600 uppercase tracking-widest flex items-center gap-2 hover:text-white mt-4 mx-auto">
                             <ArrowLeft className="w-3 h-3" /> Back
                         </button>
                     </motion.div>
