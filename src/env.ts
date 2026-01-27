@@ -2,14 +2,15 @@ import { z } from "zod";
 
 const envSchema = z.object({
     NEXT_PUBLIC_SUPABASE_URL: z.string().url().or(z.literal("")),
-    // The new Supabase keys start with 'sb_publishable_' or are standard JWTs (legacy)
     NEXT_PUBLIC_SUPABASE_ANON_KEY: z.string().min(1).or(z.literal("")),
     NODE_ENV: z
         .enum(["development", "test", "production"])
         .default("development"),
 });
 
-const getEnv = (key: string) => (process.env[key]?.trim() || "");
+const getEnv = (key: string) => {
+    return (process.env[key]?.trim() || process.env[key.toLowerCase()]?.trim() || "");
+};
 
 const processEnv = {
     NEXT_PUBLIC_SUPABASE_URL: getEnv("NEXT_PUBLIC_SUPABASE_URL"),
