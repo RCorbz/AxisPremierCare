@@ -68,10 +68,17 @@ The goal is to create a "Black Card" experience where the technology feels magic
 
 ---
 
-## 🧠 Phase 3: Clinical Ops & Automation (SOAP & Follow-Up)
-**Goal:** Automate the clinical workflow and post-care loop.
+## 🧠 Phase 3: Intelligence & "The Digital Concierge"
+**Goal:** Transition from static forms to a conversation-first experience.
 
-### 1. SOAP Notes (ScribeAI Integration)
+### 1. The Concierge Chat Skin (Active)
+- **Objective:** Refactor the Membership Wizard into a terminal-style chat interface.
+- **Features:** 
+    - Message Bubbles from "Axis Concierge".
+    - Predictive button-driven inputs.
+    - Secure "Axis OS" terminal aesthetic.
+
+### 2. Follow-Up Automation ("The After-Action Report")
 - **Workflow:** 
     - ScribeAI listens and drafts the note.
     - **Integration:** The draft note is pushed to the "Drafts" folder in JaneApp for Dr. Hanson's final sign-off.
