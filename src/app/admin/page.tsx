@@ -1,5 +1,3 @@
-"use client";
-
 import { StatCard } from "@/components/dashboard/StatCard";
 import { WaitingRoom } from "@/components/dashboard/WaitingRoom";
 import { OperationsPulse } from "@/components/dashboard/OperationsPulse";

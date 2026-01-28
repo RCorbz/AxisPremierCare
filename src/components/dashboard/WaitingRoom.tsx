@@ -1,3 +1,5 @@
+"use client";
+
 import { Database } from "@/types/supabase";
 
 type Lead = Database["public"]["Tables"]["leads"]["Row"];
@@ -49,8 +51,8 @@ export function WaitingRoom() {
                         <div>
                             <span
                                 className={`px-2 py-1 text-[10px] uppercase tracking-widest border ${lead.status === "New"
-                                        ? "bg-electric-yellow/10 text-electric-yellow border-electric-yellow/20"
-                                        : "bg-zinc-800 text-zinc-400 border-zinc-700"
+                                    ? "bg-electric-yellow/10 text-electric-yellow border-electric-yellow/20"
+                                    : "bg-zinc-800 text-zinc-400 border-zinc-700"
                                     }`}
                             >
                                 {lead.status}
