@@ -14,9 +14,9 @@ const getEnv = (key: string) => {
 };
 
 const processEnv = {
-    NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL || getEnv("NEXT_PUBLIC_SUPABASE_URL"),
-    NEXT_PUBLIC_SUPABASE_ANON_KEY: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || getEnv("NEXT_PUBLIC_SUPABASE_ANON_KEY"),
-    NEXT_PUBLIC_VENTURE_ID: process.env.NEXT_PUBLIC_VENTURE_ID || getEnv("NEXT_PUBLIC_VENTURE_ID"),
+    NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.next_public_supabase_url || getEnv("NEXT_PUBLIC_SUPABASE_URL"),
+    NEXT_PUBLIC_SUPABASE_ANON_KEY: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || process.env.next_public_supabase_anon_key || getEnv("NEXT_PUBLIC_SUPABASE_ANON_KEY"),
+    NEXT_PUBLIC_VENTURE_ID: process.env.NEXT_PUBLIC_VENTURE_ID || process.env.next_public_venture_id || getEnv("NEXT_PUBLIC_VENTURE_ID"),
     NODE_ENV: process.env.NODE_ENV,
 };
 
