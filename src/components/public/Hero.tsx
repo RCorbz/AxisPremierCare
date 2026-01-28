@@ -36,15 +36,15 @@ export function Hero({ onApply, isRevealed }: HeroProps) {
                         {isRevealed ? <Sparkles className="w-4 h-4" /> : <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />}
                     </button>
 
-                    <div className="flex items-center gap-3 py-4">
-                        <div className="flex -space-x-2">
-                            {/* Mock Avatars or Status Dots */}
-                            <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                        </div>
-                        <span className="text-zinc-500 text-xs uppercase tracking-widest">
-                            Limited to 50 Founding Members
+                    <a
+                        href="/admin"
+                        className="flex items-center gap-3 py-4 group"
+                    >
+                        <div className="w-8 h-px bg-zinc-800 group-hover:w-12 group-hover:bg-electric-yellow transition-all duration-500"></div>
+                        <span className="text-zinc-500 group-hover:text-white font-mono text-[10px] uppercase tracking-[0.4em] transition-colors">
+                            Business Lounge
                         </span>
-                    </div>
+                    </a>
                 </div>
             </div>
         </section>
