@@ -2,6 +2,7 @@
 
 import { StatCard } from "@/components/dashboard/StatCard";
 import { WaitingRoom } from "@/components/dashboard/WaitingRoom";
+import { OperationsPulse } from "@/components/dashboard/OperationsPulse";
 import { getDailyAppointments, getMonthToDateRevenue } from "@/lib/jane";
 
 /**
@@ -61,6 +62,11 @@ export default async function AdminDashboard() {
 
             {/* Section B: The Waiting Room */}
             <WaitingRoom />
+
+            {/* Section C: Strategic Operations (AAI Pipeline) */}
+            <div className="border-t border-zinc-900 pt-12">
+                <OperationsPulse />
+            </div>
         </div>
     );
 }

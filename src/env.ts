@@ -3,6 +3,7 @@ import { z } from "zod";
 const envSchema = z.object({
     NEXT_PUBLIC_SUPABASE_URL: z.string().url().or(z.literal("")),
     NEXT_PUBLIC_SUPABASE_ANON_KEY: z.string().min(1).or(z.literal("")),
+    NEXT_PUBLIC_VENTURE_ID: z.string().uuid().optional().or(z.literal("")),
     NODE_ENV: z
         .enum(["development", "test", "production"])
         .default("development"),
@@ -15,6 +16,7 @@ const getEnv = (key: string) => {
 const processEnv = {
     NEXT_PUBLIC_SUPABASE_URL: getEnv("NEXT_PUBLIC_SUPABASE_URL"),
     NEXT_PUBLIC_SUPABASE_ANON_KEY: getEnv("NEXT_PUBLIC_SUPABASE_ANON_KEY"),
+    NEXT_PUBLIC_VENTURE_ID: getEnv("NEXT_PUBLIC_VENTURE_ID"),
     NODE_ENV: process.env.NODE_ENV,
 };
 
@@ -31,5 +33,6 @@ if (!parsed.success) {
 export const env = {
     NEXT_PUBLIC_SUPABASE_URL: getEnv("NEXT_PUBLIC_SUPABASE_URL"),
     NEXT_PUBLIC_SUPABASE_ANON_KEY: getEnv("NEXT_PUBLIC_SUPABASE_ANON_KEY"),
+    NEXT_PUBLIC_VENTURE_ID: getEnv("NEXT_PUBLIC_VENTURE_ID"),
     NODE_ENV: (process.env.NODE_ENV as any) || "development",
 };

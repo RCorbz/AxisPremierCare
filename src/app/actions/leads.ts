@@ -84,16 +84,42 @@ export async function submitLead(formData: FormData) {
     console.log("Supabase Payload:", payload);
 
     try {
-        const { error, status, statusText } = await supabase
+        // Write 1: Legacy Leads Table (Redundancy)
+        const { error: leadError } = await supabase
             .from("leads")
             .insert(payload);
 
-        if (error) {
-            console.error("Supabase Error Details:", { error, status, statusText });
+        if (leadError) {
+            console.error("Supabase Leads Error:", leadError);
             return {
                 success: false,
-                message: `Submission Error: ${error.message} (${statusText || 'Unknown Connection Error'})`
+                message: `Submission Error: ${leadError.message}`
             };
+        }
+
+        // Write 2: AAI AI Sensor (Signals Table)
+        const ventureId = env.NEXT_PUBLIC_VENTURE_ID;
+        if (ventureId) {
+            const { error: signalError } = await (supabase
+                .from("signals" as any) as any)
+                .insert({
+                    venture_id: ventureId,
+                    event_type: "new_lead",
+                    payload: {
+                        name: payload.full_name,
+                        type: payload.lead_type,
+                        priority: payload.deployment_priority,
+                        impact: payload.activity_impacted,
+                        interest: payload.interest_level,
+                        is_out_of_area: payload.is_out_of_area
+                    },
+                    timestamp: new Date().toISOString()
+                });
+
+            if (signalError) {
+                console.warn("AAI Signal Ingestion Failed:", signalError);
+                // We don't fail the whole request because Write 1 succeeded
+            }
         }
 
         revalidatePath("/admin");
@@ -161,5 +187,27 @@ export async function getAvailabilityStatus() {
             private: { current: 0, limit: 50, available: true, whitelist: ["84010", "84011", "84014"] },
             corporate: { current: 0, limit: 4, available: true, radius: 60 }
         };
+    }
+}
+
+export async function getVentureTasks() {
+    const supabase = await createClient();
+    const ventureId = env.NEXT_PUBLIC_VENTURE_ID;
+
+    if (!ventureId) return [];
+
+    try {
+        const { data, error } = await (supabase
+            .from("tasks" as any) as any)
+            .select("*")
+            .eq("venture_id", ventureId)
+            .eq("visibility", "External")
+            .order("created_at", { ascending: false });
+
+        if (error) throw error;
+        return data || [];
+    } catch (err) {
+        console.error("Failed to fetch venture tasks:", err);
+        return [];
     }
 }
