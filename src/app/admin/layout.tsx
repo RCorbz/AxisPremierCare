@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { ShieldCheck, Activity, Users, LogOut } from "lucide-react";
+import { Activity, LogOut } from "lucide-react";
+import { CommandToggle } from "@/components/dashboard/CommandToggle";
 
 export default function AdminLayout({
     children,
@@ -20,13 +21,7 @@ export default function AdminLayout({
                 </div>
 
                 <nav className="flex items-center gap-8">
-                    <Link
-                        href="/admin"
-                        className="text-zinc-400 hover:text-electric-yellow text-xs uppercase tracking-widest transition-colors flex items-center gap-2"
-                    >
-                        <ShieldCheck className="w-4 h-4" />
-                        Command
-                    </Link>
+                    <CommandToggle />
                     <button className="text-zinc-600 hover:text-red-500 transition-colors">
                         <LogOut className="w-4 h-4" />
                     </button>

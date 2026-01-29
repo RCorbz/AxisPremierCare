@@ -28,18 +28,27 @@ export function BusinessEntitySelector({ onSelect, currentVentureId }: BusinessE
 
     useEffect(() => {
         async function fetchVentures() {
-            const data = await getAllVentures();
+            let data = await getAllVentures();
+
+            // Fallback: If no ventures found in DB, provide Axis as default
+            if (data.length === 0 && currentVentureId) {
+                data = [{
+                    id: currentVentureId,
+                    name: "Axis Premier Care",
+                    description: "Primary Healthcare Operations"
+                }];
+            }
+
             setVentures(data);
 
-            // Default to Axis if found or the first one
+            // Default selection logic
             const defaultVenture = data.find((v: Venture) => v.id === currentVentureId) || data[0];
             if (defaultVenture) {
                 setSelectedVenture(defaultVenture);
-                onSelect(defaultVenture.id);
             }
         }
         fetchVentures();
-    }, [currentVentureId, onSelect]);
+    }, [currentVentureId]);
 
     const handleSelect = (venture: Venture) => {
         setSelectedVenture(venture);
