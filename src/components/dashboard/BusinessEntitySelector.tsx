@@ -28,23 +28,34 @@ export function BusinessEntitySelector({ onSelect, currentVentureId }: BusinessE
 
     useEffect(() => {
         async function fetchVentures() {
-            let data = await getAllVentures();
+            try {
+                let data = await getAllVentures();
 
-            // Fallback: If no ventures found in DB, provide Axis as default
-            if (data.length === 0 && currentVentureId) {
-                data = [{
-                    id: currentVentureId,
-                    name: "Axis Premier Care",
-                    description: "Primary Healthcare Operations"
-                }];
-            }
+                // Fallback: If no ventures found in DB, or fetch failed, provide Axis as default
+                if (data.length === 0) {
+                    data = [{
+                        id: currentVentureId || "d0c12416-7847-4d81-ada0-99332b87a50d",
+                        name: "Axis Premier Care",
+                        description: "Primary Healthcare Operations"
+                    }];
+                }
 
-            setVentures(data);
+                setVentures(data);
 
-            // Default selection logic
-            const defaultVenture = data.find((v: Venture) => v.id === currentVentureId) || data[0];
-            if (defaultVenture) {
-                setSelectedVenture(defaultVenture);
+                // Default selection logic
+                const fallbackId = currentVentureId || "d0c12416-7847-4d81-ada0-99332b87a50d";
+                const defaultVenture = data.find((v: Venture) => v.id === fallbackId) || data[0];
+                if (defaultVenture) {
+                    setSelectedVenture(defaultVenture);
+                }
+            } catch (error) {
+                console.error("Critical: Selector fetch failed", error);
+                const safetyAxis = {
+                    id: "d0c12416-7847-4d81-ada0-99332b87a50d",
+                    name: "Axis Premier Care"
+                };
+                setVentures([safetyAxis]);
+                setSelectedVenture(safetyAxis);
             }
         }
         fetchVentures();

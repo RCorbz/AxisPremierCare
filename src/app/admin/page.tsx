@@ -31,7 +31,7 @@ export default async function AdminDashboard({
 
     // Strategic Context
     const isStrategicMode = searchParams.mode === "strategic";
-    const selectedVentureId = searchParams.venture || env.NEXT_PUBLIC_VENTURE_ID;
+    const selectedVentureId = searchParams.venture || env.NEXT_PUBLIC_VENTURE_ID || "d0c12416-7847-4d81-ada0-99332b87a50d";
 
     return (
         <div className="space-y-12">
