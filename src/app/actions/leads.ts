@@ -190,9 +190,9 @@ export async function getAvailabilityStatus() {
     }
 }
 
-export async function getVentureTasks() {
+export async function getVentureTasks(overrideVentureId?: string) {
     const supabase = await createClient();
-    const ventureId = env.NEXT_PUBLIC_VENTURE_ID;
+    const ventureId = overrideVentureId || env.NEXT_PUBLIC_VENTURE_ID;
 
     if (!ventureId) return [];
 
@@ -208,6 +208,23 @@ export async function getVentureTasks() {
         return data || [];
     } catch (err) {
         console.error("Failed to fetch venture tasks:", err);
+        return [];
+    }
+}
+
+export async function getAllVentures() {
+    const supabase = await createClient();
+
+    try {
+        const { data, error } = await (supabase
+            .from("ventures" as any) as any)
+            .select("*")
+            .order("name", { ascending: true });
+
+        if (error) throw error;
+        return data || [];
+    } catch (err) {
+        console.error("Failed to fetch ventures:", err);
         return [];
     }
 }

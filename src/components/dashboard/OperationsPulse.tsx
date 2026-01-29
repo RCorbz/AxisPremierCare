@@ -14,18 +14,22 @@ interface Task {
     created_at: string;
 }
 
-export function OperationsPulse() {
+interface OperationsPulseProps {
+    overrideVentureId?: string;
+}
+
+export function OperationsPulse({ overrideVentureId }: OperationsPulseProps) {
     const [tasks, setTasks] = useState<Task[]>([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchTasks = async () => {
-            const data = await getVentureTasks();
+            const data = await getVentureTasks(overrideVentureId);
             setTasks(data);
             setLoading(false);
         };
         fetchTasks();
-    }, []);
+    }, [overrideVentureId]);
 
     if (loading) return (
         <div className="animate-pulse space-y-4">

@@ -41,9 +41,13 @@ export default function AdminLayout({
             </main>
 
             {/* Status Footer */}
-            <footer className="h-8 border-t border-zinc-900 flex items-center justify-between px-6 text-[10px] text-zinc-600 uppercase tracking-widest bg-carbon-black">
-                <span>System Status: Nominal</span>
-                <span>Secure Connection</span>
+            <footer className="h-8 border-t border-zinc-900 flex items-center justify-between px-6 text-[10px] text-zinc-600 uppercase tracking-widest bg-carbon-black font-mono">
+                <div className="flex items-center gap-4">
+                    <span>System Status: Nominal</span>
+                    <span className="text-zinc-800">|</span>
+                    <span className="text-electric-yellow/40">Dev Note: Separate AAI Command Core prior to Public Release</span>
+                </div>
+                <span>Secure Connection // Venture Sync v1.2</span>
             </footer>
         </div>
     );
