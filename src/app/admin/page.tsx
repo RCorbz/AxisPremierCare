@@ -77,7 +77,7 @@ export default async function AdminDashboard({
             </div>
 
             {/* Section B: The Waiting Room */}
-            <WaitingRoom />
+            <WaitingRoom ventureId={selectedVentureId} />
 
             {/* Section C: Extended Command Center (AAI Sync) */}
             {isStrategicMode && (

@@ -27,6 +27,8 @@ export async function submitLead(formData: FormData) {
 
     const supabase = await createClient();
 
+    const ventureId = (formData.get("venture_id") as string) || env.NEXT_PUBLIC_VENTURE_ID;
+
     const rawData = {
         full_name: formData.get("full_name"),
         email: formData.get("email"),
@@ -39,6 +41,7 @@ export async function submitLead(formData: FormData) {
         deployment_priority: formData.get("deployment_priority") || "General Inquiry",
         lead_type: formData.get("lead_type") || "Private",
         corporate_objective: formData.get("corporate_objective"),
+        venture_id: ventureId
     };
 
     const validation = leadSchema.safeParse(rawData);
@@ -78,6 +81,7 @@ export async function submitLead(formData: FormData) {
         is_out_of_area: !!isOutOfArea,
         lead_type: validation.data.lead_type,
         corporate_objective: validation.data.corporate_objective || null,
+        venture_id: rawData.venture_id || env.NEXT_PUBLIC_VENTURE_ID,
         status: "New"
     };
 
@@ -225,6 +229,27 @@ export async function getAllVentures() {
         return data || [];
     } catch (err) {
         console.error("Failed to fetch ventures:", err);
+        return [];
+    }
+}
+
+export async function getLeads(overrideVentureId?: string) {
+    const supabase = await createClient();
+    const ventureId = overrideVentureId || env.NEXT_PUBLIC_VENTURE_ID;
+
+    if (!ventureId) return [];
+
+    try {
+        const { data, error } = await supabase
+            .from("leads")
+            .select("*")
+            .eq("venture_id", ventureId)
+            .order("created_at", { ascending: false });
+
+        if (error) throw error;
+        return data || [];
+    } catch (err) {
+        console.error("Failed to fetch leads:", err);
         return [];
     }
 }

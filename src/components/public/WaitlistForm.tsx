@@ -10,6 +10,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { submitLead, getAvailabilityStatus } from "@/app/actions/leads";
+import { env } from "@/env";
 import { cn } from "@/lib/utils";
 import { Loader2, ArrowRight, CheckCircle, MapPin, Building2, AlertTriangle, Activity, Sparkles, ClipboardCheck, ArrowLeft, Users, Briefcase, Crown, Timer, ShieldCheck, Info, UserCheck, BarChart3, Gem, Heart, Star } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -230,9 +231,13 @@ export function WaitlistForm() {
         formData.append("phone", phone);
         formData.append("zip_code", zipCode);
         formData.append("email", "");
+        formData.append("venture_id", env.NEXT_PUBLIC_VENTURE_ID || "");
 
         let notes = `Outcome: ${outcome} | Out of Range: ${isOutOfRange}`;
-        if (mode === "corporate_new") notes += ` | Headcount: ${headcount}`;
+        if (mode === "corporate_new") {
+            notes += ` | Headcount: ${headcount}`;
+            formData.append("corporate_objective", objective);
+        }
         if (mode === "corporate_employee") notes += ` | Entity: ${verifiedEntity}`;
 
         formData.append("activity_impacted", objective);
@@ -400,12 +405,17 @@ export function WaitlistForm() {
                     {/* Objective Buttons */}
                     {step === "objective" && !isTyping && (
                         <motion.div key="objective-inputs" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="grid grid-cols-1 gap-2">
-                            {[
+                            {(mode === "corporate_new" ? [
+                                "Employee Wellness Program",
+                                "Executive Health Suite",
+                                "On-Site Recovery Lab",
+                                "Performance Workshop"
+                            ] : [
                                 "Performance Optimization",
                                 "Acute Recovery",
                                 "Chronic Maintenance",
                                 "Executive Strategy"
-                            ].map(opt => (
+                            ]).map(opt => (
                                 <button key={opt} onClick={() => selectObjective(opt)} className="p-3 border border-zinc-800 hover:border-electric-yellow text-zinc-400 hover:text-white font-mono text-[10px] uppercase tracking-widest text-left transition-all">
                                     {opt}
                                 </button>
@@ -416,12 +426,17 @@ export function WaitlistForm() {
                     {/* Outcome Buttons */}
                     {step === "outcome" && !isTyping && (
                         <motion.div key="outcome-inputs" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="grid grid-cols-1 gap-2">
-                            {[
+                            {(mode === "corporate_new" ? [
+                                "Implementation Proposal",
+                                "On-Site Tour",
+                                "Discovery Workshop",
+                                "Scalability Review"
+                            ] : [
                                 "Treatment Session",
                                 "Specialized Consult",
                                 "Bespoke Roadmap",
                                 "Readiness Scan"
-                            ].map(opt => (
+                            ]).map(opt => (
                                 <button key={opt} onClick={() => selectOutcome(opt)} className="p-3 border border-zinc-800 hover:border-electric-yellow text-zinc-400 hover:text-white font-mono text-[10px] uppercase tracking-widest text-left transition-all">
                                     {opt}
                                 </button>
